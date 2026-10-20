@@ -42,7 +42,7 @@ start empty and are disposable.
 | [array.slurm](array.slurm) | Ten independent CPU tasks, at most two active together |
 | [multi_gpu.slurm](multi_gpu.slurm) | Four A100s on one node via torchrun; application must implement DDP |
 | [checkpoint.slurm](checkpoint.slurm) | Forward USR1 to a checkpoint-aware Python application; bounded opt-in requeue |
-| [transfer.slurm](transfer.slurm) | Non-destructive directory copy in an interactive-partition allocation |
+| [transfer.slurm](transfer.slurm) | Directory copy without deletion in an interactive-partition allocation |
 | [interactive.sh](interactive.sh) | Request an interactive login shell allocation |
 | [environment.sh](environment.sh) | Quoting, interpreter check, thread bounds, temporary caches and run identity |
 

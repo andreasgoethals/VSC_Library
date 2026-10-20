@@ -8,3 +8,4 @@
 - Added combined guides/reference material, flat Slurm templates, exact upstream provenance and source-review tracking.
 - Added daily GitHub source refresh and offline integrity, privacy, documentation and shell checks.
 - Established consuming-project docs/VSC.md as the only place for project-specific VSC instructions.
+- Checked checkpoint/requeue behavior and transfer path guards with isolated shell regressions; transfers refuse root and recursive destinations.

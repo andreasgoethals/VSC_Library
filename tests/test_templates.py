@@ -113,5 +113,66 @@ wait "$batch"
         self.assertFalse(requeue)
 
 
+@unittest.skipUnless(BASH, "Bash is needed for transfer-path regression checks")
+class TransferTemplateTests(unittest.TestCase):
+    def run_transfer(self, mode):
+        with tempfile.TemporaryDirectory(prefix="vsc transfer test ") as folder:
+            root = Path(folder)
+            source = root / "source with spaces"
+            source.mkdir()
+            destination = root / "destination with spaces"
+            binary = root / "bin"
+            binary.mkdir()
+            stub = binary / "rsync"
+            stub.write_text('#!/bin/bash\nprintf "%s\\0" "$@" > "$COPY_LOG"\n', newline="\n")
+            stub.chmod(0o755)
+            src = shell_path(source)
+            dst = shell_path(destination)
+            if mode == "source-root":
+                src = "/"
+            elif mode == "same":
+                dst = src
+            elif mode == "nested":
+                dst = src + "/child"
+            elif mode == "destination-root":
+                dst = "/tmp/.."
+            env = dict(os.environ, COPY_LOG=shell_path(root / "copy-log"))
+            command = [BASH, "-c", 'export PATH="$1:$PATH"; exec bash "$2" "$3" "$4"',
+                       "harness", shell_path(binary), shell_path(ROOT / "slurm templates/transfer.slurm"), src, dst]
+            result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=10)
+            args = (root / "copy-log").read_bytes().decode().split("\0")[:-1] if (root / "copy-log").exists() else []
+            return result, args
+
+    def test_root_source_is_refused(self):
+        result, args = self.run_transfer("source-root")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertFalse(args)
+
+    def test_same_source_and_destination_is_refused(self):
+        result, args = self.run_transfer("same")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertFalse(args)
+
+    def test_recursive_destination_is_refused(self):
+        result, args = self.run_transfer("nested")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertFalse(args)
+
+    def test_root_destination_after_normalization_is_refused(self):
+        result, args = self.run_transfer("destination-root")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertFalse(args)
+
+    def test_valid_quoted_copy_does_not_delete_or_preserve_old_timestamps(self):
+        result, args = self.run_transfer("valid")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(args)
+        self.assertNotIn("--delete", args)
+        self.assertNotIn("-a", args)
+        self.assertNotIn("-t", args)
+        self.assertIn("source with spaces/", args[-2])
+        self.assertIn("destination with spaces/", args[-1])
+
+
 if __name__ == "__main__":
     unittest.main()

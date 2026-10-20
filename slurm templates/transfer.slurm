@@ -17,8 +17,10 @@ destination="${2:?Provide the absolute destination directory}"
     echo "Expected an existing absolute source and a non-root absolute destination." >&2; exit 2;
 }
 source_dir="$(realpath "$source_dir")"
+[[ "$source_dir" != / ]] || { echo "Refusing to copy a filesystem root." >&2; exit 2; }
 mkdir -p "$destination"
 destination="$(realpath "$destination")"
+[[ "$destination" != / ]] || { echo "Refusing a filesystem-root destination." >&2; exit 2; }
 [[ "$destination" != "$source_dir" && "$destination"/ != "$source_dir"/* ]] || {
     echo "Destination must not be the source or inside it." >&2; exit 2;
 }
