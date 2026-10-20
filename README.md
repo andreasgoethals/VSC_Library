@@ -143,3 +143,17 @@ Preserve expensive outputs and checkpoints in consuming projects.
 
 The upstream documentation's GPL-3.0 license is retained in [LICENSE](LICENSE).
 See [SOURCES.md](SOURCES.md) for attribution.
+
+## Shared Literature workspace
+
+This independent repository can also live under the local `0. Literature`
+workspace alongside other libraries. Its Git history and remote remain separate.
+The shared entry points are `scripts/maintain.py` and
+`scripts/propagate_to_downstream.py`; source-specific stages and identity are
+defined in `scripts/library.json`. Both commands work in an independent clone.
+
+From the parent workspace, `python scripts/maintain.py` runs libraries in
+parallel. `python scripts/propagate_to_downstream.py --dry-run` previews updates
+to existing consumer registrations under Projects; `--push` explicitly publishes
+pin-only updates. Libraries are independent opt-ins, never an all-or-nothing bundle.
+Pending registrations and unrelated consumer work must be preserved.

@@ -1,7 +1,8 @@
 # AGENTS.md — VSC Library
 
 First establish the checkout boundary. The standalone VSC Library checkout is
-the only place to maintain shared files. A consuming project's vsc-library
+the only place to maintain shared files, whether selected directly or from the
+parent Literature workspace. A consuming project's vsc-library
 submodule is entirely read-only: no local notes, edits, deletes, refreshes,
 formatting or generated files there. Its parent repository owns docs/VSC.md.
 

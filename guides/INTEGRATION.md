@@ -95,8 +95,8 @@ See [GitHub's Dependabot reference](https://docs.github.com/en/code-security/ref
 
 ## Maintenance in Codex
 
-Add the standalone 0. VSC Library folder as its own local project and start
-future shared-library work there. Opening a README in another chat's panel
+Open the parent `0. Literature` workspace, or the canonical `VSC Library` child,
+as the local project for future shared-library work. Opening a README in another chat's panel
 does not change that chat's recorded working directory.
 Keep durable instructions in AGENTS.md and this README so the next chat can
 continue from the files rather than reconstructing this conversation.

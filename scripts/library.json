@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "vsc",
+  "name": "VSC Library",
+  "origin": "https://github.com/andreasgoethals/VSC_Library.git",
+  "mountpoint": "vsc-library",
+  "stages": {
+    "refresh": {
+      "command": [
+        "scripts/refresh.py"
+      ],
+      "mutating": true,
+      "description": "refresh the official VSC documentation"
+    },
+    "docs": {
+      "command": [
+        "scripts/check.py"
+      ],
+      "description": "integrity, source review, links and shell checks",
+      "strict_review": true
+    },
+    "tests": {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "description": "offline regression tests"
+    }
+  }
+}
