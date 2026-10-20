@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+.local/
+*.tmp
+*.refresh.tmp

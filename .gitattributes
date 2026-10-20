@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+*.slurm text eol=lf
+# RST headings can look like Git's seven-character conflict delimiters.
+"VSC Repository.txt" -whitespace conflict-marker-size=80

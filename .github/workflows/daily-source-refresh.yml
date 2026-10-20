@@ -1,0 +1,41 @@
+name: Daily source refresh
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: vsc-source-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.repository == 'andreasgoethals/VSC_Library'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Refresh official source
+        run: python scripts/refresh.py
+      - name: Validate the complete result
+        run: python scripts/maintain.py --check-only
+      - name: Publish review summary
+        run: cat UPSTREAM_CHANGES.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit only generated source updates
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "VSC Repository.txt" sources.json UPSTREAM_CHANGES.md CHANGELOG.md LICENSE
+          if git diff --cached --quiet; then
+            echo "Official source unchanged; no commit needed."
+          else
+            git commit -m "docs: refresh official VSC source"
+            git push origin "HEAD:$DEFAULT_BRANCH"
+          fi
