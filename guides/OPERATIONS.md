@@ -7,6 +7,13 @@ users/projects. The selected account is required when submitting a Leuven job.
 Mindwell uses regular credit accounts now; an old pilot example is not a promise
 of free production compute.
 
+KU Leuven users can request introduction credits (a limited amount of free
+credits for test and development) and project credits for research and
+production runs; see the Service Catalog. Introduction credits are held in a
+personal account named intro_vscxxxxx, where vscxxxxx is your own VSC
+username, and selected like any other account with --account. UHasselt users
+use the credit request form; others contact their VSC coordinator.
+
 Useful commands:
 
     sam-balance
@@ -23,17 +30,60 @@ reserved by memory requirements. GPU jobs charge the GPU component as well.
 A request that occupies a whole node's memory can be charged for the blocked
 cores even when the process only uses one thread.
 
-The reviewed GPU rates are shown below as a reference, in credits per
-allocated GPU-minute. CPU charges can be additional; these are not full-job
-quotes and they do not imply equal throughput or equal cost per experiment.
+### Cost formula
 
-| GPU | Credits / GPU-minute |
-|---|---:|
-| P100 | 41.667 |
-| V100 | 59.583 |
-| A100 | 141.667 |
-| H100 | 569.444 |
-| B200 | 437.500 |
+Each partition has Slurm TRESBillingWeights, inspectable with
+scontrol show partitions --clusters=wice. Walltime is the number of minutes
+the job actually ran:
+
+    CPU-only job: CPU weight * effective cores * walltime
+    GPU job:      (CPU weight * effective cores + GPU weight * GPUs) * walltime
+
+So a GPU job pays the CPU rate for its cores in addition to the GPU rate.
+The effective core count can exceed the request: a one-core job asking for a
+full wICE node's memory blocks the node and counts as 72 cores.
+
+Worked example from the source: two default-partition wICE Ice Lake nodes with
+72 tasks each, running 2.5 hours (150 minutes):
+
+    floor(2.546296296 * (2 * 72)) * 150 = 54 900 credits
+
+sam-quote gives the same estimate when you prefix the submission command:
+
+    $ sam-quote sbatch --account=YOUR_ACCOUNT --clusters=wice --nodes=2 \
+                       --ntasks-per-node=72 --time=2:30:00 myjobscript.slurm
+    54900
+
+sam-quote assumes the worst case, in which the job runs until its time limit.
+
+### Charge rates
+
+Reviewed TRESBillingWeights, in credits per allocated CPU core or GPU per minute.
+These are reference values from the reviewed source, not full-job quotes,
+and they do not imply equal throughput or equal cost per experiment.
+
+| Cluster | Resource | Type | Credits / minute |
+|---|---|---|---:|
+| wICE | Skylake | CPU core | 4.630 |
+| wICE | Cascadelake | CPU core | 4.630 |
+| wICE | Ice Lake | CPU core | 2.546 |
+| wICE | Ice Lake (bigmem) | CPU core | 4.398 |
+| wICE | Ice Lake (hugemem) | CPU core | 18.519 |
+| wICE | Sapphire Rapids | CPU core | 3.472 |
+| wICE | Zen4 Genoa | CPU core | 3.472 |
+| wICE | P100 | GPU | 41.667 |
+| wICE | V100 | GPU | 59.583 |
+| wICE | A100 | GPU | 141.667 |
+| wICE | H100 | GPU | 569.444 |
+| Mindwell | Granite Rapids | CPU core | 2.604 |
+| Mindwell | Granite Rapids (bigmem) | CPU core | 3.038 |
+| Mindwell | B200 | GPU | 437.500 |
+
+The CPU rates also apply to the cores of GPU jobs, per the formula above. For
+example, the source's A100 partition configuration lists CPU=2.546296296
+alongside the A100 GPU weight; check scontrol for the partition you use.
+According to the wICE quick start, jobs on the wICE interactive partition do
+not consume credits.
 
 Check the current credit source and live billing configuration before making
 a budget decision. A faster completed job can cost less overall even when
@@ -75,4 +125,5 @@ Incidents are time-sensitive and are not reclassified automatically by this
 repository's source refresh.
 
 Sources: source/leuven/credits.rst, source/leuven/slurm_accounting.rst,
-source/leuven/slurm_specifics.rst and source/accounts/managing_disk_usage.rst.
+source/leuven/slurm_specifics.rst, source/leuven/wice_quick_start.rst and
+source/accounts/managing_disk_usage.rst.

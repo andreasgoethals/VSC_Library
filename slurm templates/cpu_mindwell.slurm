@@ -8,8 +8,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=28000M
 #SBATCH --time=01:00:00
-#SBATCH --output=slurm-%x-%A-%a.out
-#SBATCH --error=slurm-%x-%A-%a.err
+#SBATCH --output=slurm-%x-%j.out
+#SBATCH --error=slurm-%x-%j.err
 set -euo pipefail
 source "${SLURM_SUBMIT_DIR:?}/vsc-library/slurm templates/environment.sh" "$@"
 shift 2

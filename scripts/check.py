@@ -28,7 +28,7 @@ def check(root: Path = ROOT, strict_review: bool = False) -> list[str]:
         errors.append("Required documentation is missing.")
     if hashlib.sha256((root / "LICENSE").read_bytes()).hexdigest() != manifest["text_files"]["LICENSE"]["sha256"]:
         errors.append("Upstream LICENSE has changed or was not retained exactly.")
-    reviews = json.loads((root / "guides/reviewed_sources.json").read_text())
+    reviews = json.loads((root / "guides/reviewed_sources.json").read_text(encoding="utf-8"))
     if (root / "UPSTREAM_CHANGES.md").read_bytes() != render_review_report(manifest, reviews):
         errors.append("UPSTREAM_CHANGES.md does not match source/review metadata.")
     stale = review_changes(manifest, reviews)

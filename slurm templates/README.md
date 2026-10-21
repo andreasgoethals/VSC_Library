@@ -23,9 +23,16 @@ Adapt memory, CPUs, GPUs and time to a measured workload.
 
 The explicit interpreter avoids accidentally using another activated
 environment. If that environment needs module loading or activation, put it in
-the parent's scripts/vsc_environment.sh; the helper sources it before launch.
-Stage model weights and datasets before submitting. The helper's per-job caches
-start empty and are disposable.
+the parent's scripts/vsc_environment.sh; the helper sources it before launch,
+with nounset relaxed only while the hook runs. Stage model weights and datasets
+before submitting. The helper's per-job caches start empty and are disposable.
+They go to node-local VSC_SCRATCH_NODE when it is available, which is removed
+when the job ends. Otherwise they fall back to VSC_SCRATCH/vsc-library-cache,
+where finished jobs' cache directories remain until you remove them or the
+scratch cleanup does; the log prints the cache path.
+
+Logs are named slurm-JOBNAME-JOBID; the array template uses
+slurm-JOBNAME-ARRAYJOBID_TASKID.
 
 ## Available files
 
@@ -40,9 +47,9 @@ start empty and are disposable.
 | [gpu_b200.slurm](gpu_b200.slurm) | Single B200 on Mindwell; native GPFS I/O |
 | [gpu_debug.slurm](gpu_debug.slurm) | Short full-A100 debugging allocation |
 | [array.slurm](array.slurm) | Ten independent CPU tasks, at most two active together |
-| [multi_gpu.slurm](multi_gpu.slurm) | Four A100s on one node via torchrun; application must implement DDP |
-| [checkpoint.slurm](checkpoint.slurm) | Forward USR1 to a checkpoint-aware Python application; bounded opt-in requeue |
-| [transfer.slurm](transfer.slurm) | Directory copy without deletion in an interactive-partition allocation |
+| [multi_gpu.slurm](multi_gpu.slurm) | Four A100s on one node via torchrun; CPU threads divided per worker; application must implement DDP |
+| [checkpoint.slurm](checkpoint.slurm) | Forward USR1 to a checkpoint-aware Python application; bounded opt-in requeue; appended logs |
+| [transfer.slurm](transfer.slurm) | Retry-safe directory copy without deletion or overwriting in an interactive-partition allocation |
 | [interactive.sh](interactive.sh) | Request an interactive login shell allocation |
 | [environment.sh](environment.sh) | Quoting, interpreter check, thread bounds, temporary caches and run identity |
 
@@ -54,9 +61,15 @@ The transfer script takes two absolute directories instead of Python arguments:
 
     sbatch --account=YOUR_ACCOUNT "vsc-library/slurm templates/transfer.slurm" /absolute/source /absolute/destination
 
-It copies contents, retains partial copies for retry, does not delete source or
-destination files and does not preserve timestamps. It does not prove that the
-copies are complete enough for your application; verify inputs before compute.
+It copies contents and does not delete source or destination files. It does
+not preserve timestamps, because the Leuven scratch cleanup can treat staged
+files with old preserved timestamps as inactive. A rerun therefore skips every
+file already present under its final name and never updates or overwrites one;
+use a fresh destination when the source changed. Interrupted files are held in
+a .rsync-partial directory rather than appearing complete. Symlinks within the
+source tree are kept as links; links pointing outside it are copied as the
+files they reference. It does not prove that the copies are complete enough
+for your application; verify inputs before compute.
 Do not copy a live database as though it were an immutable completed artifact.
 
 Run the interactive helper from a login shell:
@@ -72,9 +85,14 @@ serialization, locking or checkpoint validation for the application.
 
     sbatch --account=YOUR_ACCOUNT "vsc-library/slurm templates/checkpoint.slurm" "$PWD" /absolute/path/to/python 0 -m your_package.train
 
-The third argument 0 disables automatic requeue. A value from 1 to 10 permits
-at most that many automatic restarts after a confirmed checkpoint status.
-The wrapper never requeues an ordinary failure or an unconfirmed checkpoint.
+The third argument 0 disables the wrapper's automatic requeue. A value from
+1 to 10 permits at most that many automatic restarts after a confirmed
+checkpoint status. The wrapper never requeues an ordinary failure or an
+unconfirmed checkpoint. Because the script sets --requeue, Slurm itself may
+also requeue the job, for example after a node failure. The wrapper cannot
+bound those restarts, but they increase SLURM_RESTART_COUNT and so consume
+the same budget. With limit 0, also pass --no-requeue to sbatch to forbid them.
+Logs are opened in append mode, so each restart adds to the same job log.
 Adapt the default CPU resources to a GPU allocation only when the application
 and resume contract have been tested.
 

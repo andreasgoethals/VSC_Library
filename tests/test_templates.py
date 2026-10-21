@@ -26,9 +26,12 @@ def shell_path(path):
 
 @unittest.skipUnless(BASH, "Bash is needed for real shell-wrapper regression checks")
 class CheckpointTemplateTests(unittest.TestCase):
-    def run_wrapper(self, *, signal=False, checkpoint_status=85, normal_status=0, limit=1, restarts=0):
+    def run_wrapper(self, *, signal=False, checkpoint_status=85, normal_status=0, limit=1, restarts=0, hook=None):
         with tempfile.TemporaryDirectory(prefix="vsc template test ") as folder:
             root = Path(folder)
+            if hook is not None:
+                (root / "scripts").mkdir()
+                (root / "scripts/vsc_environment.sh").write_text(hook, newline="\n")
             templates = root / "vsc-library/slurm templates"
             templates.mkdir(parents=True)
             shutil.copyfile(ROOT / "slurm templates/environment.sh", templates / "environment.sh")
@@ -112,6 +115,108 @@ wait "$batch"
         self.assertEqual(result.returncode, 85, result.stdout + result.stderr)
         self.assertFalse(requeue)
 
+    def test_system_requeue_beyond_limit_runs_but_never_requeues_again(self):
+        result, requeue, _ = self.run_wrapper(signal=True, limit=1, restarts=3)
+        self.assertEqual(result.returncode, 85, result.stdout + result.stderr)
+        self.assertIn("exceeds the limit", result.stderr)
+        self.assertFalse(requeue)
+
+    def test_consumer_hook_may_reference_unset_variables(self):
+        hook = 'echo "hook saw [${VSC_LIBRARY_TEST_UNSET_VARIABLE}]"\n'
+        result, requeue, _ = self.run_wrapper(hook=hook)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("hook saw []", result.stdout)
+        self.assertFalse(requeue)
+
+    def test_nounset_is_restored_after_consumer_hook(self):
+        with tempfile.TemporaryDirectory(prefix="vsc hook test ") as folder:
+            root = Path(folder)
+            (root / "scripts").mkdir()
+            (root / "scripts/vsc_environment.sh").write_text("echo hook ran\n", newline="\n")
+            fake_python = root / "fake-python"
+            fake_python.write_text("#!/bin/bash\necho test interpreter\n", newline="\n")
+            fake_python.chmod(0o755)
+            env = dict(os.environ, SLURM_JOB_ID="1", SLURM_CPUS_PER_TASK="1",
+                       VSC_SCRATCH=shell_path(root / "scratch"))
+            env.pop("VSC_SCRATCH_NODE", None)
+            script = 'source "$1" "$2" "$3"; [[ $- == *u* ]] && echo nounset-on'
+            result = subprocess.run([BASH, "-c", script, "harness",
+                                     shell_path(ROOT / "slurm templates/environment.sh"),
+                                     shell_path(root), shell_path(fake_python)],
+                                    env=env, capture_output=True, text=True, timeout=15)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("hook ran", result.stdout)
+            self.assertIn("nounset-on", result.stdout)
+
+
+class TemplateStaticTests(unittest.TestCase):
+    def test_log_names_use_job_id_except_arrays(self):
+        for path in (ROOT / "slurm templates").glob("*.slurm"):
+            text = path.read_text(encoding="utf-8")
+            logs = [line for line in text.splitlines()
+                    if line.startswith(("#SBATCH --output=", "#SBATCH --error="))]
+            self.assertEqual(len(logs), 2, path.name)
+            for line in logs:
+                if "#SBATCH --array=" in text:
+                    self.assertIn("%A_%a", line, path.name)
+                else:
+                    self.assertIn("%j", line, path.name)
+                    self.assertNotIn("%A", line, path.name)
+                    self.assertNotIn("%a", line, path.name)
+
+    def test_checkpoint_logs_survive_requeue(self):
+        text = (ROOT / "slurm templates/checkpoint.slurm").read_text(encoding="utf-8")
+        self.assertIn("#SBATCH --open-mode=append", text)
+        self.assertIn("#SBATCH --requeue", text)
+
+
+@unittest.skipUnless(BASH, "Bash is needed for multi-GPU thread regression checks")
+class MultiGpuTemplateTests(unittest.TestCase):
+    def run_multi_gpu(self, *, node_scratch=True):
+        with tempfile.TemporaryDirectory(prefix="vsc multi gpu test ") as folder:
+            root = Path(folder)
+            templates = root / "vsc-library/slurm templates"
+            templates.mkdir(parents=True)
+            shutil.copyfile(ROOT / "slurm templates/environment.sh", templates / "environment.sh")
+            binary = root / "fake bin"
+            binary.mkdir()
+            fake_python = binary / "fake-python"
+            fake_python.write_text(
+                '#!/bin/bash\nif [[ "$1" == --version ]]; then echo "test interpreter"; exit 0; fi\n'
+                'echo "OMP=$OMP_NUM_THREADS MKL=$MKL_NUM_THREADS HF=$HF_HOME ARGS=$*"\n', newline="\n")
+            smi = binary / "nvidia-smi"
+            smi.write_text("#!/bin/bash\necho fake gpu\n", newline="\n")
+            for path in (fake_python, smi):
+                path.chmod(0o755)
+            (root / "node").mkdir()
+            env = dict(os.environ, SLURM_SUBMIT_DIR=shell_path(root), SLURM_JOB_ID="4242",
+                       SLURM_CPUS_PER_TASK="32", SLURM_GPUS_ON_NODE="4",
+                       VSC_SCRATCH=shell_path(root / "scratch"))
+            env.pop("VSC_SCRATCH_NODE", None)
+            if node_scratch:
+                env["VSC_SCRATCH_NODE"] = shell_path(root / "node")
+            command = [BASH, "-c", 'export PATH="$1:$PATH"; exec bash "$2" "$3" "$4" train.py',
+                       "harness", shell_path(binary), shell_path(ROOT / "slurm templates/multi_gpu.slurm"),
+                       shell_path(root), shell_path(fake_python)]
+            result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=15)
+            return result, shell_path(root)
+
+    def test_threads_are_divided_between_torchrun_workers(self):
+        result, _ = self.run_multi_gpu()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("OMP=8 MKL=8", result.stdout)
+        self.assertIn("--nproc-per-node=4", result.stdout)
+
+    def test_caches_prefer_node_local_scratch(self):
+        result, root = self.run_multi_gpu()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(f"HF={root}/node/vsc-library-cache/", result.stdout)
+
+    def test_caches_fall_back_to_native_scratch(self):
+        result, root = self.run_multi_gpu(node_scratch=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(f"HF={root}/scratch/vsc-library-cache/", result.stdout)
+
 
 @unittest.skipUnless(BASH, "Bash is needed for transfer-path regression checks")
 class TransferTemplateTests(unittest.TestCase):
@@ -170,6 +275,14 @@ class TransferTemplateTests(unittest.TestCase):
         self.assertNotIn("--delete", args)
         self.assertNotIn("-a", args)
         self.assertNotIn("-t", args)
+        self.assertNotIn("--times", args)
+        # Retries skip completed files without preserving timestamps; partial
+        # files never appear under a final name; symlinks are handled explicitly.
+        self.assertIn("--ignore-existing", args)
+        self.assertIn("--partial-dir=.rsync-partial", args)
+        self.assertNotIn("--partial", args)
+        self.assertIn("--links", args)
+        self.assertIn("--copy-unsafe-links", args)
         self.assertIn("source with spaces/", args[-2])
         self.assertIn("destination with spaces/", args[-1])
 

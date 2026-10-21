@@ -33,6 +33,24 @@ requirements. Windows OpenSSH, MobaXterm and PuTTY have distinct setup paths;
 the offline snapshot contains instructions for each. Protect the private key
 and keep it outside repositories.
 
+### Location access restrictions (KU Leuven / UHasselt)
+
+Since March 2026, Tier-2 access is governed by the global KU Leuven firewall
+rules, and the procedure depends on the laptop:
+
+- **KU Leuven managed laptop:** use MFA (an SSH certificate), both from Belgium
+  and from abroad. No additional firewall login is needed.
+- **Non-managed laptop:** from all locations (VPN B zone, other VSC universities,
+  other Belgian IP addresses and abroad), open
+  [firewall.vscentrum.be](https://firewall.vscentrum.be) and request a
+  certificate. The firewall page only needs to be active while making new
+  connections. Connections from within the VSC network, i.e. other VSC
+  clusters, need only the certificate.
+
+The other VSC sites apply their own firewall rules; do not transfer these
+Leuven rules to them. Source: source/accounts/authentication.rst, label
+location_access_restrictions.
+
 From PowerShell, after configuring authentication:
 
     ssh YOUR_VSC_LOGIN@login.hpc.kuleuven.be

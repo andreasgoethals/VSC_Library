@@ -178,6 +178,17 @@ def push_project(project: Project) -> None:
     git("push", "origin", f"{head}:refs/heads/{branch}", cwd=project.repo)
 
 
+def restore_pin(project: Project, old: str, previous_ref: str) -> None:
+    """Undo a failed bump so no staged gitlink blocks the next run."""
+    # The path was verified unstaged beforehand, so HEAD holds its prior entry.
+    git("reset", "--quiet", "--", project.sub_path, cwd=project.repo)
+    branch = previous_ref.removeprefix("refs/heads/") if previous_ref.startswith("refs/heads/") else ""
+    if branch and git("rev-parse", "--verify", "--quiet", previous_ref, cwd=project.sub_dir, check=False).stdout.strip() == old:
+        git("checkout", "--quiet", branch, cwd=project.sub_dir)
+    else:
+        git("checkout", "--quiet", "--detach", old, cwd=project.sub_dir)
+
+
 def update_project(project: Project, head: str, *, message: str | None, push: bool) -> None:
     consumer_ready(project)
     sub_dir = project.sub_dir
@@ -200,11 +211,23 @@ def update_project(project: Project, head: str, *, message: str | None, push: bo
         raise ValueError("submodule checkout differs from the committed pin; preserve the owner's pending pin")
     git("fetch", "origin", cwd=sub_dir)
     git("cat-file", "-e", head + "^{commit}", cwd=sub_dir)
+    previous_ref = git("symbolic-ref", "--quiet", "HEAD", cwd=sub_dir, check=False).stdout.strip()
     git("checkout", "--quiet", "--detach", head, cwd=sub_dir)
-    git("add", "--", project.sub_path, cwd=project.repo)
     commit_message = message or f"Bump {project.sub_path} pin to {head[:7]}"
-    # Path-limited commit preserves every unrelated staged/unstaged downstream file.
-    git("commit", "-m", commit_message, "--", project.sub_path, cwd=project.repo)
+    try:
+        git("add", "--", project.sub_path, cwd=project.repo)
+        # Path-limited commit preserves every unrelated staged/unstaged downstream file.
+        git("commit", "-m", commit_message, "--", project.sub_path, cwd=project.repo)
+    except subprocess.CalledProcessError as exc:
+        if project.pinned_sha() == head:
+            raise  # The pin commit exists; nothing to roll back.
+        reason = (exc.stderr or exc.stdout or str(exc)).strip()
+        try:
+            restore_pin(project, old, previous_ref)
+        except subprocess.CalledProcessError as undo:
+            raise ValueError(f"pin commit failed ({reason}); rollback also failed, inspect manually: "
+                             + (undo.stderr or str(undo)).strip()) from exc
+        raise ValueError(f"pin commit failed; restored the previous pin and checkout: {reason}") from exc
     project.status, project.detail = "updated", f"committed {head[:7]}"
     if push:
         push_project(project)

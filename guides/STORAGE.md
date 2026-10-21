@@ -14,6 +14,12 @@ The HOME/DATA defaults apply to Leuven/Hasselt accounts; other home institutes
 can have different quotas. Check both space and inode usage. A directory full
 of small files can exhaust an inode quota before the byte quota.
 
+On the cluster, myquota shows usage of VSC_HOME, VSC_DATA and VSC_SCRATCH,
+including file (inode) counts where a file quota is set. The Usage section of
+the [VSC account page](https://account.vscentrum.be) shows the same per-storage
+data. Use du sparingly: it stresses the shared file systems. Jobs may crash
+unexpectedly as usage approaches a limit.
+
 Do not assume group project storage is backed up because personal DATA is.
 Record the allocation's actual policy and restoration arrangements in the
 consuming project's docs/VSC.md. Preserve valuable checkpoints and independent
@@ -49,7 +55,9 @@ Do not build a GPU job that depends on reading its environment from GPFS.
 Scratch cleanup follows access-time policy. A move or timestamp-preserving
 transfer can leave old timestamps on newly staged files. The official advice
 for initial scratch copies is cp without -a. The transfer template likewise
-does not preserve timestamps. Do not use periodic touching as a substitute
+does not preserve timestamps. Instead, a rerun skips files that already exist
+under their final name, so it never updates or overwrites a destination file;
+use a fresh destination when the source has changed. Do not use periodic touching as a substitute
 for moving inactive valuable data to appropriate storage.
 
 Node-local scratch disappears after the allocation. Copying only during normal
@@ -78,4 +86,5 @@ resolved path and ownership.
 Sources: source/leuven/tier2_hardware/kuleuven_storage.rst,
 source/leuven/tier2_hardware/parallel_filesystems.rst,
 source/leuven/tier2_hardware/restoring_a_snapshot.rst,
-source/accounts/managing_disk_usage.rst and source/data/storage.rst.
+source/accounts/managing_disk_usage.rst, source/data/managing_storage_usage.rst
+and source/data/storage.rst.

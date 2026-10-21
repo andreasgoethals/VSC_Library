@@ -38,6 +38,13 @@ def run_stage(name: str, argv: list[str]) -> tuple[int, float, str]:
         return 2, time.monotonic() - started, str(exc)
 
 
+def stage_command(name: str, args: argparse.Namespace) -> list[str]:
+    cmd = CHECK_ONLY_OVERRIDE.get(name, STAGES[name][0]) if args.check_only else STAGES[name][0]
+    if args.strict_review and CONFIG["stages"][name].get("strict_review"):
+        cmd = [*cmd, "--strict-review"]
+    return cmd
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check-only", action="store_true", help="report only; skip snapshot refresh and check extraction parity")
@@ -61,26 +68,28 @@ def main(argv: list[str] | None = None) -> int:
             print("ERROR: refresh requires an independent canonical Git checkout.", file=sys.stderr)
             return 2
     results = []
+    rechecks: dict[str, list[str]] = {}
     for name in selected:
-        cmd = CHECK_ONLY_OVERRIDE.get(name, STAGES[name][0]) if args.check_only else STAGES[name][0]
         print(f"\n>>> [{name}] {STAGES[name][2]}", flush=True)
-        if args.strict_review and CONFIG["stages"][name].get("strict_review"):
-            cmd = [*cmd, "--strict-review"]
-        code, elapsed, output = run_stage(name, cmd)
+        code, elapsed, output = run_stage(name, stage_command(name, args))
         if not args.quiet and output.strip():
             print(output.rstrip())
         print(f"[{name}] {'OK' if code == 0 else 'ATTENTION'} (exit {code}, {elapsed:.1f}s)", flush=True)
         results.append((name, code))
-        # Refresh may invalidate curated references; recheck the selected outputs.
+        # Refresh may invalidate curated references; queue one recheck per output.
         if code == 0 and not args.check_only:
             for post in CONFIG["stages"][name].get("post_checks", []):
-                if post in args.skip:
-                    continue
-                post_code, elapsed, output = run_stage(post, STAGES[post][0])
-                if (not args.quiet or post_code) and output.strip():
-                    print(output.rstrip())
-                print(f"[{post} after {name}] {'OK' if post_code == 0 else 'ATTENTION'} (exit {post_code}, {elapsed:.1f}s)")
-                results.append((f"{post} after {name}", post_code))
+                if post not in args.skip:
+                    rechecks.setdefault(post, []).append(name)
+    # Run each recheck once, after every mutating stage has finished.
+    for post, sources in rechecks.items():
+        label = f"{post} after {', '.join(sources)}"
+        print(f"\n>>> [{label}] {STAGES[post][2]}", flush=True)
+        post_code, elapsed, output = run_stage(post, stage_command(post, args))
+        if (not args.quiet or post_code) and output.strip():
+            print(output.rstrip())
+        print(f"[{label}] {'OK' if post_code == 0 else 'ATTENTION'} (exit {post_code}, {elapsed:.1f}s)", flush=True)
+        results.append((label, post_code))
     failed = [name for name, code in results if code != 0]
     print("\n" + ("Needs attention: " + ", ".join(failed) if failed else "All selected stages passed."))
     return 1 if failed else 0

@@ -15,8 +15,8 @@ def main() -> None:
     parser.add_argument("--note", required=True, help="What was checked or changed; retained in review metadata.")
     args = parser.parse_args()
     assert_canonical()
-    manifest = json.loads((ROOT / "sources.json").read_text())
-    reviews = json.loads((ROOT / "guides/reviewed_sources.json").read_text())
+    manifest = json.loads((ROOT / "sources.json").read_text(encoding="utf-8"))
+    reviews = json.loads((ROOT / "guides/reviewed_sources.json").read_text(encoding="utf-8"))
     selected = list(reviews["guides"]) if args.all else args.guides
     if not selected or any(guide not in reviews["guides"] for guide in selected):
         parser.error("Select known guides, or --all. See guides/reviewed_sources.json.")

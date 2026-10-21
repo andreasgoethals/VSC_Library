@@ -11,6 +11,7 @@ import io
 import json
 import os
 from pathlib import Path, PurePosixPath
+import re
 import subprocess
 import tarfile
 import tempfile
@@ -221,23 +222,42 @@ def replace_bundle(root: Path, bundle: dict[str, bytes]) -> None:
         raise
 
 
-def changelog_update(content: str, manifest: dict) -> bytes:
-    day = manifest["upstream_committed_at"][:10]
+def changelog_update(content: str, manifest: dict, day: str | None = None) -> bytes:
+    """Add a refresh entry under the refresh date (UTC), keeping sections newest first.
+
+    The upstream commit date is recorded in the entry, not used as the section
+    date: an older upstream commit must not create a section above newer ones.
+    """
+    day = day or datetime.now(timezone.utc).date().isoformat()
     entry = (f"- Refreshed the official documentation snapshot to "
-             f"[{manifest['commit'][:12]}]({URL}/commit/{manifest['commit']}); "
+             f"[{manifest['commit'][:12]}]({URL}/commit/{manifest['commit']}) "
+             f"(upstream commit date {manifest['upstream_committed_at'][:10]}); "
              "recomputed source hashes and guide review flags.\n")
     heading = f"## {day}\n"
-    if heading in content:
-        content = content.replace(heading, heading + "\n" + entry, 1)
-    else:
-        title, _, rest = content.partition("\n")
-        content = title + "\n\n" + heading + "\n" + entry + "\n" + rest.lstrip("\n")
-    return content.encode()
+    lines = content.splitlines(keepends=True) or ["# Changelog\n"]
+    if not lines[-1].endswith("\n"):
+        lines[-1] += "\n"
+    if heading in lines:
+        index = lines.index(heading) + 1
+        lines[index:index] = ["\n", entry]
+        return "".join(lines).encode("utf-8")
+    dated = [i for i, line in enumerate(lines) if re.fullmatch(r"## \d{4}-\d{2}-\d{2}\n", line)]
+    older = [i for i in dated if lines[i][3:13] < day]
+    # Before the first older section; after everything if all sections are newer;
+    # directly below the title when there are no dated sections yet.
+    index = older[0] if older else (len(lines) if dated else 1)
+    block = [heading, "\n", entry]
+    if index > 0 and lines[index - 1].strip():
+        block.insert(0, "\n")
+    if index < len(lines) and lines[index].strip():
+        block.append("\n")
+    lines[index:index] = block
+    return "".join(lines).encode("utf-8")
 
 
 def refresh(root: Path = ROOT, source_checkout: Path | None = None, allow_shrink: bool = False) -> bool:
     assert_canonical(root)
-    old = json.loads((root / "sources.json").read_text()) if (root / "sources.json").exists() else None
+    old = json.loads((root / "sources.json").read_text(encoding="utf-8")) if (root / "sources.json").exists() else None
     if source_checkout:
         files, commit, committed_at = read_checkout(source_checkout)
     else:
@@ -263,7 +283,7 @@ def refresh(root: Path = ROOT, source_checkout: Path | None = None, allow_shrink
     existing = root / SNAPSHOT
     if existing.exists() and len(snapshot) < existing.stat().st_size * 0.5 and not allow_shrink:
         raise ValueError("Snapshot shrank by more than 50%; inspect upstream before using --allow-shrink.")
-    reviews = json.loads((root / "guides/reviewed_sources.json").read_text())
+    reviews = json.loads((root / "guides/reviewed_sources.json").read_text(encoding="utf-8"))
     bundle = {
         SNAPSHOT: snapshot,
         "sources.json": json_bytes(manifest),

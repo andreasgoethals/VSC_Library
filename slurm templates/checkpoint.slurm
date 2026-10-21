@@ -10,6 +10,7 @@
 #SBATCH --time=02:00:00
 #SBATCH --signal=B:USR1@300
 #SBATCH --requeue
+#SBATCH --open-mode=append
 #SBATCH --output=slurm-%x-%j.out
 #SBATCH --error=slurm-%x-%j.err
 set -euo pipefail
@@ -25,6 +26,17 @@ shift
 # USR1 -> save a complete checkpoint to persistent storage -> exit status 85.
 # The same invocation must find and resume that complete checkpoint on restart.
 # Never use 85 for ordinary failure or for an incomplete checkpoint.
+# --requeue also lets Slurm itself requeue this job, e.g. after a node failure.
+# The wrapper does not request such system restarts and cannot bound them, but
+# they increment SLURM_RESTART_COUNT and so consume the limit below. With a
+# limit of 0, submit with --no-requeue to forbid them. Append mode keeps
+# earlier attempts' logs.
+restarts="${SLURM_RESTART_COUNT:-0}"
+[[ "$restarts" =~ ^[0-9]+$ ]] || { echo "Invalid SLURM_RESTART_COUNT: $restarts" >&2; exit 2; }
+echo "Attempt $((restarts + 1)); total automatic restarts allowed: $max_restarts"
+if (( restarts > max_restarts )); then
+    echo "Restart count $restarts exceeds the limit (system requeue); no further requeue will be requested." >&2
+fi
 checkpoint_requested=0
 "$PYTHON" "$@" &
 child=$!
@@ -43,7 +55,6 @@ if (( checkpoint_requested )); then
     wait "$child" || status=$?
 fi
 if (( checkpoint_requested && status == 85 )); then
-    restarts="${SLURM_RESTART_COUNT:-0}"
     if (( restarts < max_restarts )); then
         echo "Application confirmed a complete checkpoint; requesting a bounded requeue."
         scontrol --clusters="${SLURM_CLUSTER_NAME:?}" requeue "$SLURM_JOB_ID"

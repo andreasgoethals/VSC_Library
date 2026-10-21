@@ -128,6 +128,32 @@ class SourceRefreshTests(unittest.TestCase):
                 download.assert_not_called()
             self.assertEqual(path.stat().st_mtime_ns, before)
 
+    def test_changelog_uses_refresh_date_not_older_upstream_date(self):
+        content = "# Changelog\n\n## 2026-10-20\n\n- Newer authored change.\n"
+        manifest = {"commit": SHA, "upstream_committed_at": "2026-09-01T00:00:00Z"}
+        text = subject.changelog_update(content, manifest, day="2026-10-21").decode("utf-8")
+        self.assertLess(text.index("## 2026-10-21"), text.index("## 2026-10-20"))
+        self.assertNotIn("## 2026-09-01", text)
+        self.assertIn("upstream commit date 2026-09-01", text)
+
+    def test_changelog_sections_stay_newest_first(self):
+        content = ("# Changelog\n\n## 2026-10-22\n\n- Future-dated entry.\n\n"
+                   "## 2026-10-18\n\n- Older entry.\n")
+        manifest = {"commit": SHA, "upstream_committed_at": DATE}
+        text = subject.changelog_update(content, manifest, day="2026-10-20").decode("utf-8")
+        days = [line[3:] for line in text.splitlines() if line.startswith("## ")]
+        self.assertEqual(days, ["2026-10-22", "2026-10-20", "2026-10-18"])
+        self.assertNotIn("\n\n\n", text)
+        same_day = subject.changelog_update(text, manifest, day="2026-10-20").decode("utf-8")
+        self.assertEqual(same_day.count("## 2026-10-20"), 1)
+        self.assertEqual(same_day.count("Refreshed the official"), 2)
+
+    def test_changelog_defaults_to_utc_today_and_creates_title(self):
+        manifest = {"commit": SHA, "upstream_committed_at": "2020-01-01T00:00:00Z"}
+        today = subject.datetime.now(subject.timezone.utc).date().isoformat()
+        text = subject.changelog_update("", manifest).decode("utf-8")
+        self.assertTrue(text.startswith(f"# Changelog\n\n## {today}\n\n- Refreshed"))
+
     def test_downstream_refresh_is_refused(self):
         result = subprocess.CompletedProcess([], 0, stdout="/a/consumer\n", stderr="")
         with mock.patch.object(subject.subprocess, "run", return_value=result):

@@ -24,7 +24,15 @@ destination="$(realpath "$destination")"
 [[ "$destination" != "$source_dir" && "$destination"/ != "$source_dir"/* ]] || {
     echo "Destination must not be the source or inside it." >&2; exit 2;
 }
-# No deletion and no timestamp preservation: appropriate for initial scratch staging.
+# No deletion and no timestamp preservation: the Leuven scratch cleanup treats
+# old preserved timestamps as inactive files (source: kuleuven_storage.rst).
+# Retries skip files that already exist under their final name instead of
+# relying on timestamps. rsync only gives a file its final name once complete;
+# an interrupted file is held in .rsync-partial and transferred again next run.
+# Consequence: an existing destination file is never updated or overwritten.
+# Symlinks inside the source tree stay links; links pointing outside it are
+# copied as the files they reference, so the destination is self-contained.
 # Choose destination storage before submission; do not run on P100/V100 for GPFS.
-rsync -r --partial --info=stats2 -- "$source_dir"/ "$destination"/
+rsync -r --links --copy-unsafe-links --ignore-existing --partial-dir=.rsync-partial \
+    --info=stats2 -- "$source_dir"/ "$destination"/
 echo "Copy complete. Verify the destination before starting compute or removing any source."

@@ -11,7 +11,9 @@ The table reflects the reviewed source revision recorded in
 | wICE | batch / batch_icelake | CPU work; Ice Lake nodes have 72 cores |
 | wICE | batch_sapphirerapids | CPU work; Sapphire Rapids nodes have 96 cores |
 | Mindwell | batch_graniterapids | CPU work; Granite Rapids nodes have 192 cores |
-| Mindwell | bigmem | Large host-memory CPU jobs |
+| wICE | bigmem | Ice Lake nodes with 2 TiB RAM; default 28,000 MiB per core |
+| wICE | hugemem | One Ice Lake node with 8 TiB RAM; default 111,900 MiB per core |
+| Mindwell | bigmem | Large host-memory CPU jobs; nodes with 1.5 TiB RAM |
 | wICE | gpu_p100 | P100, 16 GiB GPU memory |
 | wICE | gpu_v100 | V100, 32 GiB GPU memory |
 | wICE | gpu_a100 / gpu | A100, 80 GiB GPU memory |
@@ -25,7 +27,11 @@ are on wICE. Explicitly select the cluster when submitting a job.
 Regular compute/GPU walltime is generally at most 72 hours. Documented
 _long partitions permit up to 168 hours, including wICE P100/V100 long queues.
 Do not invent A100/H100/B200 _long names: inspect the actual source or sinfo.
-wICE gpu_a100_debug and gpu_p100_debug allow up to one hour.
+wICE gpu_a100_debug and gpu_p100_debug allow up to one hour. You can have only
+a single gpu_a100_debug job in the queue at any time.
+
+The big-memory partitions are charged at higher per-core rates than regular
+Ice Lake/Granite Rapids cores; see [credits](OPERATIONS.md#credits).
 
 The interactive partitions allow up to 16 hours and eight CPU cores. wICE
 offers at most one A100 MIG slice with one seventh of the device resources,
