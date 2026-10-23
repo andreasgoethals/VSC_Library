@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-23
+
+- Refreshed the official documentation snapshot to [1a0cf04a5aab](https://github.com/hpcleuven/VscDocumentation/commit/1a0cf04a5aab107021d98c563351f912a3caf062) (upstream commit date 2026-10-22); recomputed source hashes and guide review flags.
+
 ## 2026-10-20
 
 - Fixed Slurm templates: per-worker thread limits in `multi_gpu.slurm` (previously 4 × 32 threads on 32 cores); `--open-mode=append` and a validated restart budget in `checkpoint.slurm`; `set -u` relaxed only while sourcing the project hook; `%j` log names for non-array jobs; caches on node-local scratch when available; retry-safe `transfer.slurm` (`--ignore-existing`, partial dir, explicit link handling) without preserving timestamps, per the scratch-cleanup policy.
