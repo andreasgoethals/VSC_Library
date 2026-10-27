@@ -1,8 +1,8 @@
 VSC Repository - automatically scraped official VSC documentation
 Repository: https://github.com/hpcleuven/VscDocumentation
 Branch: master
-Commit: 1a0cf04a5aab107021d98c563351f912a3caf062
-Upstream commit date: 2026-10-22T11:41:47Z
+Commit: 7c04105490d610fee13125c8c70fa4bddd854a88
+Upstream commit date: 2026-10-26T13:34:30Z
 License: GPL-3.0 (upstream LICENSE is included below and retained at repository root).
 Content is upstream source, including historical pages and site-specific tabs.
 Read guides/ for current KU Leuven interpretation; consult live status before running jobs.
@@ -1303,10 +1303,10 @@ FILE: requirements.txt
 ========================================================================
 accessible-pygments==0.0.5
 alabaster==1.0.0
-anyio==4.8.0
+anyio==4.14.2
 babel==2.16.0
 beautifulsoup4==4.12.3
-certifi==2024.12.14
+certifi==2026.10.19
 charset-normalizer==3.4.1
 click==8.1.8
 colorama==0.4.6
@@ -1332,7 +1332,7 @@ requests==2.32.4
 six==1.17.0
 sniffio==1.3.1
 snowballstemmer==2.2.0
-soupsieve==2.6
+soupsieve==2.9
 Sphinx==8.1.3
 sphinx-autobuild==2024.10.3
 sphinx-notfound-page==1.0.4
@@ -1346,9 +1346,9 @@ sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-redirects==0.2.0
 sphinxcontrib-serializinghtml==2.0.0
 starlette==0.49.1
-tornado==6.5.1
+tornado==6.5.9
 typing_extensions==4.12.2
-urllib3==2.6.3
+urllib3==2.8.0
 uvicorn==0.34.0
 watchfiles==1.0.4
 websockets==14.2
