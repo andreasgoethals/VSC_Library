@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "7c04105490d610fee13125c8c70fa4bddd854a88",
+  "commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1112,6 +1112,11 @@
       "reason": "binary asset; see upstream",
       "sha256": "641b43ec1e337f6de9182db078399b50822e40338256d16729b4bdc4be8d0ea9"
     },
+    "source/globus/sharing/consent_required.png": {
+      "bytes": 126558,
+      "reason": "binary asset; see upstream",
+      "sha256": "f035678681a79421e4fcfca3f19fff407bdd427a7d71a4d0d67eab4c84a5e032"
+    },
     "source/globus/sharing/getting_to_permissions_1.png": {
       "bytes": 92862,
       "reason": "binary asset; see upstream",
@@ -1261,7 +1266,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "548e4841eb7e563ba46f0df612d7c51c5b76ba3369ea33aa65fbfca3acbb8046",
+  "snapshot_sha256": "f353fa10dda4313a37be49a6355dcff44859664a0ddad7d091dfd347ca42ef46",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -2324,8 +2329,8 @@
       "sha256": "bcbb0504fcb0c0b2d5114dd99f52113f02f483b52cf2fc9c547fe8b17e83419a"
     },
     "source/globus/sharing.rst": {
-      "bytes": 5783,
-      "sha256": "632b90b1eb614c1db8000750bd991a6a7e146dbb2ed180d4954cbaefef6f9d6f"
+      "bytes": 5995,
+      "sha256": "e5edc4598099dab47c0386d5eeab8dbc559a86ad9b1021052e2b94a91f8cb874"
     },
     "source/globus/using_globus_via_web.rst": {
       "bytes": 7391,
@@ -2420,8 +2425,8 @@
       "sha256": "3e5b28c8a98ca1df73a6c3912a9e0290a7a1a9f47cf4ecfb9b41b4da4c31d576"
     },
     "source/leuven/slurm_specifics.rst": {
-      "bytes": 12947,
-      "sha256": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3"
+      "bytes": 13650,
+      "sha256": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7"
     },
     "source/leuven/tier2_hardware.rst": {
       "bytes": 257,
@@ -2524,5 +2529,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-10-26T13:34:30Z"
+  "upstream_committed_at": "2026-10-29T08:50:33Z"
 }
