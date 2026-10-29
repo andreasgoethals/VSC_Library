@@ -34,6 +34,15 @@ scratch cleanup does; the log prints the cache path.
 Logs are named slurm-JOBNAME-JOBID; the array template uses
 slurm-JOBNAME-ARRAYJOBID_TASKID.
 
+## Memory requests
+
+These examples request CPUs and rely on partition-default host memory. The
+29 October 2026 Leuven documentation warns that explicit memory together with
+`--cpus-per-task` can produce inconsistent Slurm CPU variables and fail launches.
+Do not add `--mem` or `--mem-per-cpu` at submission without first removing
+`--cpus-per-task` in a project-owned copy. Check the allocated memory and CPU
+budget; see [the scheduler warning and alternatives](../guides/SLURM.md#explicit-memory-and-cpu-requests).
+
 ## Available files
 
 | File | Purpose |

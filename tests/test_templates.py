@@ -150,6 +150,17 @@ wait "$batch"
 
 
 class TemplateStaticTests(unittest.TestCase):
+    def test_explicit_memory_is_not_combined_with_cpus_per_task(self):
+        # Leuven's 2026-10-29 warning: memory-driven extra CPU allocation can
+        # make SLURM_CPUS_PER_TASK disagree with SLURM_TRES_PER_TASK.
+        for path in (ROOT / "slurm templates").glob("*.slurm"):
+            directives = [line for line in path.read_text(encoding="utf-8").splitlines()
+                          if line.startswith("#SBATCH ")]
+            cpu = any("--cpus-per-task=" in line for line in directives)
+            memory = any("--mem=" in line or "--mem-per-cpu=" in line
+                         or "--mem-per-gpu=" in line for line in directives)
+            self.assertFalse(cpu and memory, path.name)
+
     def test_log_names_use_job_id_except_arrays(self):
         for path in (ROOT / "slurm templates").glob("*.slurm"):
             text = path.read_text(encoding="utf-8")

@@ -74,6 +74,11 @@ The source documents different interconnects; wICE H100 nodes use Ethernet
 rather than the same InfiniBand arrangement as other groups. Do not infer
 cross-node scaling from single-node results.
 
+Explicit host-memory requests combined with `--cpus-per-task` can also cause
+launcher failures under the current Leuven Slurm configuration. The examples
+use partition-default memory; see [the scheduler warning](SLURM.md#explicit-memory-and-cpu-requests)
+before changing their requests.
+
 Sources: source/leuven/wice_quick_start.rst,
 source/leuven/mindwell_quick_start.rst,
 source/leuven/tier2_hardware/wice_hardware.rst,

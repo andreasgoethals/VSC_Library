@@ -6,11 +6,11 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/slurm_specifics.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3",
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/tier2_hardware.rst": "4bba30d487541ab0aac90758b1c1722ba202a430bc2053b318dfc8c54f10cbee",
         "source/leuven/tier2_hardware/icelake_mlc.txt": "23c3c24ff24bb6ced7d2030abf916b640621b8a92163c982297615980f574123",
         "source/leuven/tier2_hardware/kuleuven_storage.rst": "66533cca6c92b443262336cdaabf28b7ce12c0a2036a73c0529cc60ede554671",
@@ -101,8 +101,8 @@
         "source/leuven/slurm_specifics.rst",
         "source/leuven/wice_quick_start.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/compute/portal/index.rst": "4c38f7c4074e99d3bf11e3a8fbe233f2beed091f49fd3225d776c27442b92398",
         "source/compute/portal/ondemand/active-jobs.rst": "2bfaa1700c45ed163d7601cf796796ff3abc8efcbd42d9845189fa2ab8ef03fd",
@@ -124,7 +124,7 @@
         "source/compute/portal/ondemand/vscode-server.rst": "d0a968475e7a896287f82a445012373984d0a97b27ff1e8c61ed5800111fff65",
         "source/compute/portal/ondemand/vscode-tunnel.rst": "3ccfcea64a6f16480e8e6cde986ffb74b6d28900bc0e57dacc723be916ac93fc",
         "source/compute/portal/ondemand/vscode-warning-extensions.rst": "3ce12c82a065a600a90a21e17cc90edb6f34c3e902b281fce4577d7b48d34415",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3",
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }
     },
@@ -135,13 +135,13 @@
         "source/leuven/slurm_specifics.rst",
         "source/accounts/managing_disk_usage.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/accounts/managing_disk_usage.rst": "f02ea7a8430976bfafa1b9077009b9d928335e6c4af1f1651ef101203cfb69d4",
         "source/leuven/credits.rst": "c59061ea2d6f9266f30f5891556a282aa23031544ba2a8e70519dbde68a4b074",
         "source/leuven/slurm_accounting.rst": "3e5b28c8a98ca1df73a6c3912a9e0290a7a1a9f47cf4ecfb9b41b4da4c31d576",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3"
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7"
       }
     },
     "guides/SLURM.md": {
@@ -150,8 +150,8 @@
         "source/leuven/slurm_specifics.rst",
         "source/leuven/*quick_start.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/compute/jobs/checkpointing_framework.rst": "da22ad02e63e579291c9cc71823a4bf7e20afee4fc542f537c4ac49485cb264d",
         "source/compute/jobs/clusters_slurm.rst": "e7e4b6007d9b5c5ff1012e14618a1e54afdbe90b9aa6a3d0db9420abc0b60d7b",
@@ -177,7 +177,7 @@
         "source/compute/jobs/worker_or_atools.rst": "5307aad3aac545301a4aef31d5f35b0cba25bee27624ab8bbc54269304a8e54d",
         "source/compute/jobs/workflows_using_job_dependencies.rst": "4323847e799598af50f7622e0e7ca64d75f974e555a60594cf943294f92ed93f",
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3",
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }
     },
@@ -188,8 +188,8 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/wice_advanced_guide.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/compute/software/developing_software/blas_and_lapack.rst": "25221ac201bf2d771e6fd8e831c03e65476ec7a1814e5ba1739f34a7e54ea9b4",
         "source/compute/software/developing_software/books_parallel.rst": "ab938b7ed701cd94c47b1a1b975b15281d7a135362b58ad3925187f2d5812d1f",
@@ -240,7 +240,7 @@
         "source/compute/software/using_software/using_eessi.rst": "87a04b020a1599ba4653f6cbb2794ac3ad3b7d621a3bd131e6c7a48dd055a3b5",
         "source/compute/software/using_software/using_software.rst": "640c052225e7bb04df158a79c78495e9958b2659b47d8aa9c3f90064ac353750",
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3",
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/wice_advanced_guide.rst": "316fa9a62c4ed0a1c7e463891b4c50147f6737edf7fd3dcef8982fa5e12b748f",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }
@@ -308,8 +308,8 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/tier2_hardware/kuleuven_storage.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
+      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
       "reviewed_hashes": {
         "source/compute/jobs/checkpointing_framework.rst": "da22ad02e63e579291c9cc71823a4bf7e20afee4fc542f537c4ac49485cb264d",
         "source/compute/jobs/clusters_slurm.rst": "e7e4b6007d9b5c5ff1012e14618a1e54afdbe90b9aa6a3d0db9420abc0b60d7b",
@@ -335,7 +335,7 @@
         "source/compute/jobs/worker_or_atools.rst": "5307aad3aac545301a4aef31d5f35b0cba25bee27624ab8bbc54269304a8e54d",
         "source/compute/jobs/workflows_using_job_dependencies.rst": "4323847e799598af50f7622e0e7ca64d75f974e555a60594cf943294f92ed93f",
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
-        "source/leuven/slurm_specifics.rst": "110696f74edf88feee01ea3538ba920530b31f0b11792bb6e4f38e3d770916d3",
+        "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/tier2_hardware/kuleuven_storage.rst": "66533cca6c92b443262336cdaabf28b7ce12c0a2036a73c0529cc60ede554671",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }

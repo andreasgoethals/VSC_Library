@@ -96,6 +96,7 @@ its nominal device rate is higher; measure the actual workload.
 | Cannot log in / nothing starts | Live service status and maintenance notices |
 | Submission rejects partition | Explicit cluster, actual partition and requested resource limits |
 | Account / balance warning | sam-balance, account membership, requested cost and quota |
+| srun/mpirun CPU request mismatch | Explicit memory plus `--cpus-per-task`; inspect `SLURM_CPUS_PER_TASK` and `SLURM_TRES_PER_TASK`, then apply the [documented workaround](SLURM.md#explicit-memory-and-cpu-requests) |
 | Long pending time | squeue reason, resource size, QoS, dependency and reservation |
 | Python package missing | Exact interpreter, environment hook, module stack and kernel selection |
 | CUDA unavailable / unsupported kernel | Actual allocated GPU, host driver, framework build and real operation preflight |

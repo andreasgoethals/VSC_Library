@@ -6,11 +6,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=28000M
 #SBATCH --time=00:10:00
 #SBATCH --gpus-per-node=1
 #SBATCH --output=slurm-%x-%j.out
 #SBATCH --error=slurm-%x-%j.err
+# Use partition-default memory with --cpus-per-task; see guides/SLURM.md.
 set -euo pipefail
 source "${SLURM_SUBMIT_DIR:?}/vsc-library/slurm templates/environment.sh" "$@"
 shift 2

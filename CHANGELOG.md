@@ -2,6 +2,10 @@
 
 ## 2026-10-29
 
+- Refreshed the official documentation snapshot to [73bd2b4dead1](https://github.com/hpcleuven/VscDocumentation/commit/73bd2b4dead1e4837d007091659d70eee1dfb9d7) (upstream commit date 2026-10-29); recomputed source hashes and guide review flags.
+
+- Reviewed the new Leuven memory/CPU allocation warning. Templates now retain CPU requests and use partition-default memory, avoiding explicit-memory/`--cpus-per-task` combinations; updated six affected guides/template references and added a regression check. Applications must recheck their allocated memory before use.
+
 - Refreshed the official documentation snapshot to [bc86b66d0530](https://github.com/hpcleuven/VscDocumentation/commit/bc86b66d0530847caf2a3fa7187808e01d0b624b) (upstream commit date 2026-10-29); recomputed source hashes and guide review flags.
 
 ## 2026-10-27

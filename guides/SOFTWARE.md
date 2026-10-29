@@ -135,6 +135,9 @@ library compatible with the host.
 For MPI, Leuven recommends the MPI implementation's launcher, typically mpirun.
 The reviewed Slurm installation lacks PMI support, so an MPI program launched
 through srun can hang. Follow the current site-specific guidance.
+The 29 October 2026 source also warns that explicit memory combined with
+`--cpus-per-task` can make CPU allocation variables disagree and fail `srun`
+or `mpirun`. See [the resource-request workaround](SLURM.md#explicit-memory-and-cpu-requests).
 Single-node torchrun has a separate template; a multi-node PyTorch program
 needs its own tested launch/rendezvous and network setup.
 

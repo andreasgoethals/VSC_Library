@@ -32,6 +32,27 @@ environment variable really must be exported, follow the site's documented
 minimal-environment syntax; use export=ALL only when inheriting the whole
 submission environment is deliberate and checked.
 
+## Explicit memory and CPU requests
+
+The official Leuven scheduler documentation updated on 29 October 2026 warns
+that combining an explicit memory request with `--cpus-per-task` can leave
+`SLURM_CPUS_PER_TASK` and `SLURM_TRES_PER_TASK` inconsistent when memory causes
+Slurm to allocate extra cores. `srun` and `mpirun` then fail. Its documented
+workaround is to omit `--cpus-per-task` when explicitly requesting memory.
+
+The supplied templates retain their CPU requests and use partition-default
+memory, with no explicit `--mem` or `--mem-per-cpu`. Inspect the partition's
+`DefMemPerCPU`/limits and the allocated memory before choosing a workload;
+the old templates' fixed memory amounts are no longer requested. Increase the
+CPU request to obtain more memory at the partition default, respecting GPU/core
+limits, and estimate the resulting cost with `sam-quote`.
+
+If your project needs explicit memory, remove the template's `--cpus-per-task`
+directive first and verify the resulting CPU allocation and thread budget.
+Do not add a command-line memory override to these unchanged templates.
+An omitted CPU setting also changes how the environment helper chooses its
+thread count; inspect the job's allocation before selecting workers.
+
 ## Monitor the right cluster
 
     squeue --clusters=all --me

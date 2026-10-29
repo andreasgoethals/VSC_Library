@@ -100,6 +100,11 @@ The V100 incident link in the old banner is historical context. Check the
 [live status page](https://status.vscentrum.be/tier2_leuven.html) for current
 availability rather than treating that old notice as a permanent restriction.
 
+For custom batch scripts or launches from an OnDemand shell, follow the
+[explicit-memory/CPU warning](SLURM.md#explicit-memory-and-cpu-requests).
+Do not assume a portal form and a hand-written Slurm script make identical
+resource requests; inspect the generated job if its launcher fails.
+
 Sources: source/compute/portal/index.rst,
 source/compute/portal/ondemand/files.rst,
 source/compute/portal/ondemand/login-shell.rst,

@@ -6,10 +6,10 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
-#SBATCH --mem=6800M
 #SBATCH --time=01:00:00
 #SBATCH --output=slurm-%x-%j.out
 #SBATCH --error=slurm-%x-%j.err
+# Use partition-default memory with --cpus-per-task; see guides/SLURM.md.
 set -euo pipefail
 source_dir="${1:?Usage: sbatch transfer.slurm ABSOLUTE_SOURCE_DIR ABSOLUTE_DEST_DIR}"
 destination="${2:?Provide the absolute destination directory}"
