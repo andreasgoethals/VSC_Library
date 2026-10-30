@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-30
+
+- Refreshed the official documentation snapshot to [1f31ba3759bf](https://github.com/hpcleuven/VscDocumentation/commit/1f31ba3759bf023151fd01a6eca9ba8582501a02) (upstream commit date 2026-10-30); recomputed source hashes and guide review flags.
+
 ## 2026-10-29
 
 - Refreshed the official documentation snapshot to [73bd2b4dead1](https://github.com/hpcleuven/VscDocumentation/commit/73bd2b4dead1e4837d007091659d70eee1dfb9d7) (upstream commit date 2026-10-29); recomputed source hashes and guide review flags.

@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "73bd2b4dead1e4837d007091659d70eee1dfb9d7",
+  "commit": "1f31ba3759bf023151fd01a6eca9ba8582501a02",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1266,7 +1266,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "391db5dc55d2cbd992dea438e569448b0f80863723882c4fc4b72faad78a4609",
+  "snapshot_sha256": "7a1d52352fd61888058d543e456a658ab3e91a9820443c39440d6bb9a9dacc13",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1541,8 +1541,8 @@
       "sha256": "33f93510df44c4120ad7da46c54607288f8ded7e08c9e9cafe747ab8bb09d358"
     },
     "source/brussel/tier1_sofia_changelog.rst": {
-      "bytes": 2647,
-      "sha256": "6378a9e83e8ec03b64da993b8864a035584a9f0eb24018d1b9f657377c505c2c"
+      "bytes": 2971,
+      "sha256": "01cf19794521df87e7663a9ddacedaba1eb64c7d94336b5983c6720423cef077"
     },
     "source/brussel/tier2_hardware.rst": {
       "bytes": 198,
@@ -2529,5 +2529,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-10-29T13:03:17Z"
+  "upstream_committed_at": "2026-10-30T07:06:15Z"
 }

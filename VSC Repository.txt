@@ -1,8 +1,8 @@
 VSC Repository - automatically scraped official VSC documentation
 Repository: https://github.com/hpcleuven/VscDocumentation
 Branch: master
-Commit: 73bd2b4dead1e4837d007091659d70eee1dfb9d7
-Upstream commit date: 2026-10-29T13:03:17Z
+Commit: 1f31ba3759bf023151fd01a6eca9ba8582501a02
+Upstream commit date: 2026-10-30T07:06:15Z
 License: GPL-3.0 (upstream LICENSE is included below and retained at repository root).
 Content is upstream source, including historical pages and site-specific tabs.
 Read guides/ for current KU Leuven interpretation; consult live status before running jobs.
@@ -7345,6 +7345,16 @@ FILE: source/brussel/tier1_sofia_changelog.rst
 Tier-1 sofia changelog
 ######################
 
+2026-10-28
+----------
+* Redundancy tests carried out on power and network systems.
+* Upgraded the firmware of *zen4_h200* compute nodes.
+
+2026-10-27
+----------
+* Enabled module browser in *portal.sofia.vub.be*
+* Installed software toolchain *foss/2026.1*
+
 2026-10-21
 ----------
 * Roll-out of core system upgrades to all compute and login nodes. This
@@ -7353,6 +7363,10 @@ Tier-1 sofia changelog
   NVIDIA GPU driver version 615.71.10.
 * Upgraded Open OnDemand on *portal.sofia.vub.be* to version 4.2.5
 * Enabled support for GPUs on EESSI software stack.
+
+2026-10-20
+----------
+* Replaced broken memory DIMM on node hc011.
 
 2026-10-13
 ----------
