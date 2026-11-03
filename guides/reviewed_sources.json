@@ -101,8 +101,8 @@
         "source/leuven/slurm_specifics.rst",
         "source/leuven/wice_quick_start.rst"
       ],
-      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
-      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
+      "review_note": "Read the complete changed VS Code Tunnel source and its diff. New Ollama content is VUB-specific; clarified that it does not establish KU Leuven availability.",
+      "reviewed_commit": "e3ebab1fbab6b801cbb3d0b57c9cb3bc0ff6b8d5",
       "reviewed_hashes": {
         "source/compute/portal/index.rst": "4c38f7c4074e99d3bf11e3a8fbe233f2beed091f49fd3225d776c27442b92398",
         "source/compute/portal/ondemand/active-jobs.rst": "2bfaa1700c45ed163d7601cf796796ff3abc8efcbd42d9845189fa2ab8ef03fd",
@@ -122,7 +122,7 @@
         "source/compute/portal/ondemand/rstudio-server.rst": "0378939d360812e5b651007ca49e1d6aa11ea3850c6472f1ceb6d3addc35fe8a",
         "source/compute/portal/ondemand/tensorboard.rst": "b96c2c3a7c9f7a95de43bb26a63b0f1cb0b254c833a31ea3c921c63e87c9a07c",
         "source/compute/portal/ondemand/vscode-server.rst": "d0a968475e7a896287f82a445012373984d0a97b27ff1e8c61ed5800111fff65",
-        "source/compute/portal/ondemand/vscode-tunnel.rst": "3ccfcea64a6f16480e8e6cde986ffb74b6d28900bc0e57dacc723be916ac93fc",
+        "source/compute/portal/ondemand/vscode-tunnel.rst": "59c0dccea63391b3504a7b8e2a8994e7813bc8af9b394ffe915ff63520368715",
         "source/compute/portal/ondemand/vscode-warning-extensions.rst": "3ce12c82a065a600a90a21e17cc90edb6f34c3e902b281fce4577d7b48d34415",
         "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"

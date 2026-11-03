@@ -68,6 +68,10 @@ Avoid requesting a production GPU just to keep an editor open. Do not expose
 private data through session-sharing links or enter extension credentials into
 tracked files. A view-only noVNC link still shares what is visible.
 
+The VS Code Tunnel documentation also describes an Ollama server checkbox,
+private network namespace and model-cache settings in its **VUB** tab. Those
+instructions do not establish that this option is available at KU Leuven.
+
 ## Meaning of the October 2026 notice
 
 The following release details come from the portal banner quoted by the owner.
@@ -111,4 +115,5 @@ source/compute/portal/ondemand/login-shell.rst,
 source/compute/portal/ondemand/interactive-apps.rst,
 source/compute/portal/ondemand/jupyterlab.rst,
 source/compute/portal/ondemand/vscode-server.rst,
+source/compute/portal/ondemand/vscode-tunnel.rst,
 source/leuven/slurm_specifics.rst and the owner-provided 1 October 2026 banner.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-03
+
+- Reviewed the new VS Code Tunnel Ollama instructions: they are confined to the VUB tab. Clarified the site boundary in the Leuven OnDemand guide; no Leuven service or live-runtime claim is inferred.
+
+- Refreshed the official documentation snapshot to [e3ebab1fbab6](https://github.com/hpcleuven/VscDocumentation/commit/e3ebab1fbab6b801cbb3d0b57c9cb3bc0ff6b8d5) (upstream commit date 2026-11-03); recomputed source hashes and guide review flags.
+
 ## 2026-10-30
 
 - Refreshed the official documentation snapshot to [1f31ba3759bf](https://github.com/hpcleuven/VscDocumentation/commit/1f31ba3759bf023151fd01a6eca9ba8582501a02) (upstream commit date 2026-10-30); recomputed source hashes and guide review flags.

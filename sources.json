@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "1f31ba3759bf023151fd01a6eca9ba8582501a02",
+  "commit": "e3ebab1fbab6b801cbb3d0b57c9cb3bc0ff6b8d5",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1266,7 +1266,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "7a1d52352fd61888058d543e456a658ab3e91a9820443c39440d6bb9a9dacc13",
+  "snapshot_sha256": "45e44f5cbd2d06dac06aaa9f50c51d798e175c594290e52dc610288d24413e8a",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1833,8 +1833,8 @@
       "sha256": "d0a968475e7a896287f82a445012373984d0a97b27ff1e8c61ed5800111fff65"
     },
     "source/compute/portal/ondemand/vscode-tunnel.rst": {
-      "bytes": 3383,
-      "sha256": "3ccfcea64a6f16480e8e6cde986ffb74b6d28900bc0e57dacc723be916ac93fc"
+      "bytes": 4374,
+      "sha256": "59c0dccea63391b3504a7b8e2a8994e7813bc8af9b394ffe915ff63520368715"
     },
     "source/compute/portal/ondemand/vscode-warning-extensions.rst": {
       "bytes": 462,
@@ -2529,5 +2529,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-10-30T07:06:15Z"
+  "upstream_committed_at": "2026-11-03T14:55:09Z"
 }
