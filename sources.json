@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "e3ebab1fbab6b801cbb3d0b57c9cb3bc0ff6b8d5",
+  "commit": "3ad7e8496a11620432832d09e06b3e0444e2d147",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -947,6 +947,21 @@
       "reason": "binary asset; see upstream",
       "sha256": "b1e51414b1d57527db1d5d7ed2b29193748109c2c25c38fd998de96c610f364f"
     },
+    "source/data/tier1data/images/ownCloud/ownCloud_additional-configuration.png": {
+      "bytes": 30287,
+      "reason": "binary asset; see upstream",
+      "sha256": "3a9732ee72c798f84a676dc72b36b98b79da05502642792fe0c3e2774a0e24b7"
+    },
+    "source/data/tier1data/images/ownCloud/ownCloud_no-additional-configuration.png": {
+      "bytes": 48744,
+      "reason": "binary asset; see upstream",
+      "sha256": "6f807b61d66b705c645665eda9fb97a47f7f616008c3af65a3d8519b26a1c620"
+    },
+    "source/data/tier1data/images/ownCloud/ownCloud_sync-subcollection.png": {
+      "bytes": 50777,
+      "reason": "binary asset; see upstream",
+      "sha256": "bc0a138e56116766e8b7064a2d29ab091094afe29613d0c3f10dc7966a683de0"
+    },
     "source/data/tier1data/images/sftp_clients/mango-drive-desktop.png": {
       "bytes": 160464,
       "reason": "binary asset; see upstream",
@@ -1266,7 +1281,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "45e44f5cbd2d06dac06aaa9f50c51d798e175c594290e52dc610288d24413e8a",
+  "snapshot_sha256": "f62216e3f4e74ba4aa196ab6ddd816e281dc279fdec43ef4bac7a569977c9fbe",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -2173,8 +2188,8 @@
       "sha256": "44b2b2266b5b5ade40f0dc87856e45d0feca30ef031d5daa3a789975e4aa5d95"
     },
     "source/data/tier1data/clients.rst": {
-      "bytes": 182,
-      "sha256": "7be1953d621bfe6cd3dc3cd6e6c9e194890380236c97dbd4e67ec006697269c5"
+      "bytes": 202,
+      "sha256": "0adcaa0dcebf68b1a71c310dd38ca2be4126b5c757fe7c3734695dfd07ee32cb"
     },
     "source/data/tier1data/clients/icommands.rst": {
       "bytes": 12273,
@@ -2187,6 +2202,10 @@
     "source/data/tier1data/clients/mango_portal.rst": {
       "bytes": 15381,
       "sha256": "662610dfe839eb237be4df4220d83749e529db80cff3726cac9de139d3949b64"
+    },
+    "source/data/tier1data/clients/ownCloud.rst": {
+      "bytes": 9752,
+      "sha256": "50181ee2d18cad632dd28829d3ff6830d71175804970da08bab1bd053792e0e9"
     },
     "source/data/tier1data/clients/python_client.rst": {
       "bytes": 14469,
@@ -2529,5 +2548,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-03T14:55:09Z"
+  "upstream_committed_at": "2026-11-06T13:12:20Z"
 }
