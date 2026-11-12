@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "3ad7e8496a11620432832d09e06b3e0444e2d147",
+  "commit": "1dff3b554514568d26ee9aad6c990ea370e943e2",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1281,7 +1281,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "f62216e3f4e74ba4aa196ab6ddd816e281dc279fdec43ef4bac7a569977c9fbe",
+  "snapshot_sha256": "3ea6410dde50cc7a61c6b6d0d133fb1c0d368b343bed68c08a72c7a5591499cc",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1632,12 +1632,12 @@
       "sha256": "fd181bb046679e26200530f6ea84c03d4af77bc98e4e005ed0988a9650df6c91"
     },
     "source/cloud/pilot/access.md": {
-      "bytes": 7589,
-      "sha256": "042d9fc63e4d0e59e649b2d31b67582ec2d75dfc54fb3f54f04c0472cfbde883"
+      "bytes": 7690,
+      "sha256": "cc279116dadd34ea3c75ca63bcb5f4c9b8ed05ecc8e0e508e92c8652edbba549"
     },
     "source/cloud/pilot/accessing_vms.md": {
-      "bytes": 1075,
-      "sha256": "0aacf2f28649521cb9e5d6fed40625749f8e83f4604b565f74a0e19866f9cfdc"
+      "bytes": 2299,
+      "sha256": "68865228e4d9fda1479d28aba4e8bd0df3541d1fac58733645f439f2d4c8896f"
     },
     "source/cloud/pilot/advanced_usage.md": {
       "bytes": 738,
@@ -1653,11 +1653,11 @@
     },
     "source/cloud/pilot/networking.md": {
       "bytes": 2837,
-      "sha256": "31ba5ffbaba83803e66ec1327ab2082537500e7b7db9d7baed54404a0c988732"
+      "sha256": "a8acba7e6e28617d5ed407d7ab387650600b3ee917226b4e3f464119193340d0"
     },
     "source/cloud/pilot/opentofu.md": {
-      "bytes": 18053,
-      "sha256": "cef7794f80fa5ce9bf102af5c581d45258bc20f15a1b7e131ca9e72b6361f3e7"
+      "bytes": 18587,
+      "sha256": "8e9fa63a7b0cbaf97983a1c3907e9fd24672f83ea480b49ea530713b75f7c250"
     },
     "source/cloud/pilot/shares.md": {
       "bytes": 373,
@@ -2548,5 +2548,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-06T13:12:20Z"
+  "upstream_committed_at": "2026-11-12T11:12:43Z"
 }

@@ -2,6 +2,8 @@
 
 ## 2026-11-12
 
+- Refreshed the official documentation snapshot to [1dff3b554514](https://github.com/hpcleuven/VscDocumentation/commit/1dff3b554514568d26ee9aad6c990ea370e943e2) (upstream commit date 2026-11-12); recomputed source hashes and guide review flags.
+
 - Reviewed the Tier-1 Data ownCloud addition and documented its desktop sync, platform and bulk-transfer limits in the storage guide.
 
 ## 2026-11-07
