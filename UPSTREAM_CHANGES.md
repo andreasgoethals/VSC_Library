@@ -17,12 +17,5 @@ certify cluster availability, local environments or applications.
 | [guides/OPERATIONS.md](<guides/OPERATIONS.md>) | Matches reviewed source |
 | [guides/SLURM.md](<guides/SLURM.md>) | Matches reviewed source |
 | [guides/SOFTWARE.md](<guides/SOFTWARE.md>) | Matches reviewed source |
-| [guides/STORAGE.md](<guides/STORAGE.md>) | REVIEW REQUIRED: 2 changed source files |
+| [guides/STORAGE.md](<guides/STORAGE.md>) | Matches reviewed source |
 | [slurm templates/README.md](<slurm templates/README.md>) | Matches reviewed source |
-
-## guides/STORAGE.md
-
-[Compare with the reviewed revision](https://github.com/hpcleuven/VscDocumentation/compare/9475d631a15849b70d84642b17c226b1b89fd28d...3ad7e8496a11620432832d09e06b3e0444e2d147).
-
-- [source/data/tier1data/clients.rst](https://github.com/hpcleuven/VscDocumentation/blob/3ad7e8496a11620432832d09e06b3e0444e2d147/source/data/tier1data/clients.rst)
-- [source/data/tier1data/clients/ownCloud.rst](https://github.com/hpcleuven/VscDocumentation/blob/3ad7e8496a11620432832d09e06b3e0444e2d147/source/data/tier1data/clients/ownCloud.rst)

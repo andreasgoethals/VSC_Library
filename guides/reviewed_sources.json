@@ -254,8 +254,8 @@
         "source/leuven/tier2_hardware/parallel_filesystems.rst",
         "source/leuven/tier2_hardware/restoring_a_snapshot.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "Reviewed the Tier-1 Data client index and ownCloud desktop guide at 3ad7e8496a11. Added platform-specific sync and metadata, permissions and bulk-transfer limits to the storage guide.",
+      "reviewed_commit": "3ad7e8496a11620432832d09e06b3e0444e2d147",
       "reviewed_hashes": {
         "source/accounts/managing_disk_usage.rst": "f02ea7a8430976bfafa1b9077009b9d928335e6c4af1f1651ef101203cfb69d4",
         "source/accounts/vo-storage.rst": "bbe37912edc348242ad2fe14f373180a7a50536672b421fd3229dd98e161f8ef",
@@ -268,10 +268,11 @@
         "source/data/storage.rst": "2fa20e0c899469616f690ce222c4a276113ec4b77e546510084f101e21ecef39",
         "source/data/storage_locations.rst": "22b869ae989ce99547eb7e1b898462834000933394002b3ab24b8be07ca9dfd7",
         "source/data/tier1_data_service.rst": "44b2b2266b5b5ade40f0dc87856e45d0feca30ef031d5daa3a789975e4aa5d95",
-        "source/data/tier1data/clients.rst": "7be1953d621bfe6cd3dc3cd6e6c9e194890380236c97dbd4e67ec006697269c5",
+        "source/data/tier1data/clients.rst": "0adcaa0dcebf68b1a71c310dd38ca2be4126b5c757fe7c3734695dfd07ee32cb",
         "source/data/tier1data/clients/icommands.rst": "4059f16c5bfb80701f2dfd9e2a294042986f3c0d81ddfdfe4cf48253342ad334",
         "source/data/tier1data/clients/iron.rst": "c8a08dc1aa35095d322737a11c791d1abbfcbf004b9c6b0b53de34be042933b3",
         "source/data/tier1data/clients/mango_portal.rst": "662610dfe839eb237be4df4220d83749e529db80cff3726cac9de139d3949b64",
+        "source/data/tier1data/clients/ownCloud.rst": "50181ee2d18cad632dd28829d3ff6830d71175804970da08bab1bd053792e0e9",
         "source/data/tier1data/clients/python_client.rst": "08768ab39d612afced41c77fa4db44099ba1a6ce5491aaef551b43c395b244ac",
         "source/data/tier1data/clients/sftp_clients.rst": "0fc944965aad764f3a46d4773b0cbcec6f3fc24585ef1c786ca7e6235c62a07b",
         "source/data/tier1data/features.rst": "6fe6434a4cd2b58767b1f1d59500ed305daeeff7e63ddad7f7183909db9c21af",

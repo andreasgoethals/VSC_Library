@@ -83,8 +83,19 @@ Compare manifests before replacing a populated dataset/cache. Never run a
 recursive cleanup against a computed storage root without checking its exact
 resolved path and ownership.
 
+## Desktop access to Tier-1 Data
+
+The official Tier-1 Data client list now includes ownCloud desktop. On Windows
+it can use virtual files and download content on demand. The documented macOS
+and Linux client downloads the selected tree, so select a small collection
+and check local disk space first. Check sync status before freeing local space
+and avoid concurrent edits to the same file. Use ManGO for metadata and
+permissions, and a supported bulk-transfer client for large datasets. This
+client serves Tier-1 Data, separate from Leuven compute scratch.
+
 Sources: source/leuven/tier2_hardware/kuleuven_storage.rst,
 source/leuven/tier2_hardware/parallel_filesystems.rst,
 source/leuven/tier2_hardware/restoring_a_snapshot.rst,
 source/accounts/managing_disk_usage.rst, source/data/managing_storage_usage.rst
-and source/data/storage.rst.
+source/data/storage.rst, source/data/tier1data/clients.rst and
+source/data/tier1data/clients/ownCloud.rst.
