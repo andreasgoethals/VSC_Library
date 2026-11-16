@@ -1,8 +1,8 @@
 VSC Repository - automatically scraped official VSC documentation
 Repository: https://github.com/hpcleuven/VscDocumentation
 Branch: master
-Commit: a082e1daf0a7a164e6ccb37f1a935d7c6b72acee
-Upstream commit date: 2026-11-12T16:01:13Z
+Commit: 72c0de6c84968d9acf31df69c16cafae1585a051
+Upstream commit date: 2026-11-15T16:59:08Z
 License: GPL-3.0 (upstream LICENSE is included below and retained at repository root).
 Content is upstream source, including historical pages and site-specific tabs.
 Read guides/ for current KU Leuven interpretation; consult live status before running jobs.
@@ -230,6 +230,9 @@ Included files:
   source/data/.vscode/settings.json
   source/data/cyberduck/vsc_Tier1_Data.cyberduckprofile
   source/data/data_management_guidelines.rst
+  source/data/hpc_data_recovery.rst
+  source/data/hpc_data_recovery_leuven.rst
+  source/data/hpc_data_recovery_mysnapshots.rst
   source/data/index.rst
   source/data/managing_storage_usage.rst
   source/data/request_more_storage.rst
@@ -309,7 +312,6 @@ Included files:
   source/leuven/tier2_hardware/memory_bandwidth_and_latency_wice.rst
   source/leuven/tier2_hardware/mindwell_hardware.rst
   source/leuven/tier2_hardware/parallel_filesystems.rst
-  source/leuven/tier2_hardware/restoring_a_snapshot.rst
   source/leuven/tier2_hardware/tier2_login_nodes.rst
   source/leuven/tier2_hardware/wice_hardware.rst
   source/leuven/tier2_mindwell.rst
@@ -7208,6 +7210,18 @@ institute, are not directly accessible from **sofia**.
 Users can access their ``$VSC_HOME`` and ``$VSC_DATA`` storages with
 :ref:`Globus <sofia_globus>` and transfer any needed data from there to their
 project directory in the scratch storage of **sofia**.
+
+Data recovery
+-------------
+
+The scratch storage of **sofia** has a *snapshot* system to protect against
+accidental data loss. Every day we take a snapshot of all data in home
+directories and project folders and keep it for 7 days. This means that you can
+recover any file or folder in your account (even if it has been deleted) to its
+previous state as far as one week ago.
+
+Check :ref:`data_recovery` for detailed instructions on how to use the
+command ``mysnapshots`` to recover lost files on **sofia**.
 
 Node-local scratch
 ------------------
@@ -30011,6 +30025,253 @@ Automating (part of) your data operations can of course be helpful in this regar
 Including sufficient metadata is also essential. Even basic approaches such as README files will already be helpful (e.g. with information about the project or experiment and with references to relevant publications and repositories). Certain middleware such as :ref:`iRODS <metadata>` (used in ManGO and Tier-1 Data) offer a lot more possibilities when it comes to metadata.
 
 ========================================================================
+FILE: source/data/hpc_data_recovery.rst
+========================================================================
+.. _data_recovery:
+
+##################
+HPC Data Recovery
+##################
+
+The following VSC compute clusters keep regular data *snapshots* on their shared storage systems.
+This can include the storage of ``VSC_HOME``, ``VSC_DATA`` and ``VSC_SCRATCH`` in your
+account, as well as project folders or :ref:`Virtual Organizations <vo>`.
+
+.. grid:: 3
+    :gutter: 4
+
+    .. grid-item-card:: |KUL|
+       :columns: 12 4 4 4
+
+       * Tier-2 :ref:`wICE <wICE hardware>`
+       * Tier-2 :ref:`Mindwell <Mindwell hardware>`
+
+    .. grid-item-card:: |VUB|
+       :columns: 12 4 4 4
+
+       * Tier-2 :ref:`Anansi <Anansi cluster>`
+       * Tier-2 :ref:`Hydra <Hydra cluster>`
+       * Tier-1 :ref:`sofia <sofia cluster>`
+
+.. seealso::
+   The documentation on :ref:`storage hardware` has a detailed description of each
+   storage solution on our VSC compute clusters.
+
+Storage snapshots keep the state of files and directories at fixed moments in
+time. We take regular snapshots at varying time intervals depending on their
+age. The older the snapshots, the less frequent they are. This means that if
+you accidentally delete or make changes to files in the cluster, you are more
+likely to recover that data in the same state it was lost the sooner you act.
+
+.. tab-set::
+   :sync-group: vsc-sites
+
+   .. tab-item:: KU Leuven/UHasselt
+      :sync: kuluh
+
+      .. list-table::
+         :header-rows: 1
+         :align: center
+
+         * - Age of data
+           - Snapshot frequency
+           - Storage locations
+         * - Less than 1 day
+           - Hourly
+           - ``VSC_HOME``, ``VSC_DATA``
+         * - Between 1 and 7 days
+           - Daily
+           - ``VSC_HOME``, ``VSC_DATA``
+         * - Between 1 and 4 weeks
+           - Weekly
+           - ``VSC_HOME``, ``VSC_DATA``
+
+   .. tab-item:: VUB
+      :sync: vub
+
+      .. list-table::
+         :header-rows: 1
+         :align: center
+
+         * - Age of data
+           - Snapshot frequency
+           - Storage locations
+         * - Less than 3 days
+           - Hourly
+           - ``VSC_HOME``, ``VSC_DATA``, ``VSC_DATA_VO``
+         * - Between 3 and 7 days
+           - Daily
+           - ``VSC_HOME``, ``VSC_DATA``, ``VSC_DATA_VO``
+         * - Between 1 and 4 weeks
+           - Weekly
+           - ``VSC_HOME``, ``VSC_DATA``, ``VSC_DATA_VO``
+         * - More than 4 weeks
+           - Monthly
+           - ``VSC_HOME``, ``VSC_DATA``, ``VSC_DATA_VO``
+         * -
+           -
+           -
+         * - Less than 7 days
+           - Daily
+           - ``VSC_SCRATCH``, ``VSC_SCRATCH_VO``
+
+
+   .. tab-item:: Tier-1 sofia
+      :sync: sofia
+
+      .. list-table::
+         :header-rows: 1
+         :align: center
+
+         * - Age of data
+           - Snapshot frequency
+           - Storage locations
+         * - Less than 7 days
+           - Daily
+           - | ``HOME``, ``VSC_SCRATCH``,
+             | ``VSC_SCRATCH_PROJECTS_BASE``
+
+
+.. _restoring_snapshot:
+
+Restoring old files/folders
+===========================
+
+Restoring a file or directory from one of the snapshots is relatively easy.
+Snapshots are located somewhere in the file system of the cluster. Once you
+locate your snapshot (see below) you can restore your own files to a previous
+version just by copying the file from one of the snapshots to its desired
+location.
+
+Some sites might provide specific tools to carry out the restoration of files
+from snapshots. Please follow the instructions below that correspond to your
+cluster of choice.
+
+.. tab-set::
+   :sync-group: vsc-sites
+
+   .. tab-item:: KU Leuven/UHasselt
+      :sync: kuluh
+
+      .. include:: hpc_data_recovery_leuven.rst
+
+   .. tab-item:: VUB
+      :sync: vub
+
+      .. include:: hpc_data_recovery_mysnapshots.rst
+
+   .. tab-item:: Tier-1 sofia
+      :sync: sofia
+
+      .. include:: hpc_data_recovery_mysnapshots.rst
+
+========================================================================
+FILE: source/data/hpc_data_recovery_leuven.rst
+========================================================================
+The snapshots can be found in two ways.
+Either from the top-level folder on ``$VSC_HOME`` and ``$VSC_DATA``:
+
+- ``/user/leuven/.snapshot`` for ``$VSC_HOME``
+- ``/data/leuven/.snapshot`` for ``$VSC_DATA``
+
+Or equivalently, from any nested subfolder inside ``$VSC_HOME`` and
+``$VSC_DATA``. For instance, if a file is missing from ``projects/simulations``
+folder, you may retrieve it from:
+
+- ``$VSC_DATA/projects/simulations/.snapshot``
+
+In these ``.snapshot`` directories, a number of directories can be found with
+names of the form ``hourly.<timestamp>``, ``daily.<timestamp>`` or
+``weekly.<timestamp>``; where *timestamp* reflects the moment that snapshot was
+taken. For example, the directory ``weekly.2019-06-09_0000`` will contain the
+snapshot taken at midnight on June 9, 2019.
+
+The directory structure of all the directories mirrors that of ``/user/leuven``
+and ``/data/leuven`` respectively, so the most recent backup of your home
+directory can be found in  ``/user/leuven/.snapshot/hourly.2019-06-12_0205/301/vsc30124``.
+
+In this directory, you will find all your files in the state they were in when
+that particular snapshot was made, and you can simply copy them using the
+familiar bash shell operations.
+
+.. note::
+
+    You can indeed retrieve older states of your files using the snapshots, taken
+    strictly at fixed time intervals. However, for a full control over the history
+    of your critical files, you may consider using version control. Good example of
+    that would be using Github or the private Gitlab services offered at KU Leuven.
+
+========================================================================
+FILE: source/data/hpc_data_recovery_mysnapshots.rst
+========================================================================
+The command tool **mysnapshots** provides a simple interface to restore a file
+or directory from a snapshots.
+
+First, change your current directory (with ``cd``) to the directory that
+contained (or still contains) the file/directory to be restored. If that parent
+directory does not exist anymore, you can jump up to the last parent directory that still
+exists. In the worse case where a lot of data is lost, this location might be
+the top directory of ``$VSC_DATA`` or ``$VSC_SCRATCH`` for instance.
+
+.. code-block:: bash
+
+   $ cd $VSC_SCRATCH/labo
+   $ ls -l
+   total 8
+   -rw-rw-r-- 1 vsc10930 vsc10930 2261  5 nov  2024 job.sh
+   -rw-rw-r-- 1 vsc10930 vsc10930  907  5 nov  2024 results_dir
+
+The command **mysnapshots** always works on the snapshots of the current
+working directory. You can use it without arguments to list the available
+snapshots for that directory ordered by date/time.
+
+.. code-block:: bash
+
+   $ mysnapshots
+   Snapshots of $VSC_SCRATCH/labo:
+   2025-05-08T17:02:44  2025-05-08T22:02:08  2025-05-09T08:01:56  2025-05-09T13:02:02
+
+The output of the previous command shows the timestamps of the four snapshots
+with data for the working directory. Now if we want to know which
+files/directories are available in a specific snapshot, we can execute
+**mysnapshots** with the timestamp of that snapshot in the given
+``YYYY-MM-DDTHH:mm:ss`` format as argument:
+
+.. code-block:: bash
+
+   $ mysnapshots 2025-05-09T13:02:02
+   Inventory of $VSC_SCRATCH/labo at 2025-05-09T13:02:02:
+   job.sh      results_dir   old_data
+
+In the example above, **mysnapshots** shows three files/directories in the snapshot *2025-05-09T13:02:02*. Of these, *job.sh* and *results_dir* are
+still present in the current directory, whereas *old_data* is no longer present.
+
+You can restore any of these entries to their previous state at
+*2025-05-09T13:02:02* by calling **mysnapshots** with the timestamps of the
+snapshot and the path to this item as argument. For instance, we can recover
+the missing entry *old_data* from this snapshot:
+
+.. code-block:: bash
+
+   $ mysnapshots 2025-05-09T13:02:02 old_data
+   Restoring file '$VSC_SCRATCH/labo/old_data' from snapshot at 2025-05-09T13:02:02
+   Restoration complete
+   $ ls -l
+   total 12
+   -rw-rw-r-- 1 vsc10930 vsc10930 2261  5 nov  2024 job.sh
+   -rw-rw-r-- 1 vsc10930 vsc10930  907  5 nov  2024 results_dir
+   -rw-rw-r-- 1 vsc10930 vsc10930   97  9 mei  2025 old_data
+
+.. warning::
+
+   By default, **mysnapshots** will refuse to overwrite existing
+   files/directories in your working directory. Use the ``-f`` option to force
+   the restoration of existing items. Beware that restoring an already existing
+   directory with the ``-f`` option will also restore all files and folders
+   within it as they were at that point in time. More recent files will be
+   removed and all updates since then will be lost.
+
+========================================================================
 FILE: source/data/index.rst
 ========================================================================
 ################################
@@ -30317,6 +30578,7 @@ manage your data in them.
    managing_storage_usage
    request_more_storage
    data_management_guidelines
+   hpc_data_recovery
 
 ========================================================================
 FILE: source/data/storage_locations.rst
@@ -39577,7 +39839,7 @@ of files that are not accessed at high frequency by compute jobs.
 Note that for ``$VSC_HOME`` and ``$VSC_DATA``:
 
 - data is protected by snapshots, which means it is possible to
-  :ref:`recover data <restoring_snapshot>` that was accidentally deleted
+  :ref:`recover data <data_recovery>` that was accidentally deleted
   or modified,
 
 - quota for VSC accounts that do *not* have Leuven / Hasselt as home institute are
@@ -40060,54 +40322,6 @@ your side. Only use this method if no other methods suit your workflow and if
 you are prepared to carefully manage your data!
 
 ========================================================================
-FILE: source/leuven/tier2_hardware/restoring_a_snapshot.rst
-========================================================================
-.. _restoring_snapshot:
-
-Restoring a snapshot
-====================
-
-**Note:** *this only applies to the ``$VSC_HOME`` and ``$VSC_DATA`` directories of KU Leuven/UHasselt users.*
-
-The backup consists of snapshots that are created at regular intervals:
-
-1. for the past 24 hours, one snapshot per hour is avialable (``hourly.<timestamp>``);
-2. for the past week, 6 snapshots are available, created once a day (``daily.<timestamp>``);
-3. for the past month, 4 snapshots are available, created weekly (``weekly.<timestamp>``).
-
-An offsite backup is maintained for older data, but operator intervention is required to restore that. 
-The names in brackets will be explained below.
-
-The snapshots can be found in two ways.
-Either from the top-level folder on ``$VSC_HOME`` and ``$VSC_DATA``:
-
-- ``/user/leuven/.snapshot`` for ``$VSC_HOME``
-- ``/data/leuven/.snapshot`` for ``$VSC_DATA``
-
-Or equivalently, from any nested subfolder inside ``$VSC_HOME`` and ``$VSC_DATA``.
-E.g., if a a file is missing from ``projects/simulations`` folder, you may retrieve it from:
-
-- ``$VSC_DATA/projects/simulations/.snapshot``
-
-In these ``.snapshot`` directories, a number of directories can be found, their names reflecting 
-the moment the snapshot was taken, as explained above. For example, the directory ``weekly.2019-06-09_0000`` 
-will contain the snapshot taken at midnight on June 9, 2019.
-
-The directory structure of all the directories mirrors that of ``/user/leuven`` and ``/data/leuven`` 
-respectively, so the most recent backup of your home directory can be found in 
-``/user/leuven/.snapshot/hourly.2019-06-12_0205/301/vsc30124``.
-
-In this directory, you will find all your files in the state they were in when that particular snapshot 
-was made, and you can simply copy them using the familiar bash shell operations.
-
-.. note::
-
-    You can indeed retrieve older states of your files using the snapshots, taken
-    strictly at fixed time intervals. However, for a full control over the history
-    of your critical files, you may consider using version control. Good example of
-    that would be using Github or the private Gitlab services offered at KU Leuven.
-
-========================================================================
 FILE: source/leuven/tier2_hardware/tier2_login_nodes.rst
 ========================================================================
 .. _tier2_login_nodes:
@@ -40320,7 +40534,6 @@ Tier-2 Storage
    :maxdepth: 2
 
    tier2_hardware/kuleuven_storage
-   tier2_hardware/restoring_a_snapshot
    tier2_hardware/parallel_filesystems
 
 ========================================================================

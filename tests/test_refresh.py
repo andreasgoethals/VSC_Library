@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -11,6 +12,7 @@ import unittest
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from check import check
 import refresh as subject
 
 SHA = "1" * 40
@@ -102,6 +104,32 @@ class SourceRefreshTests(unittest.TestCase):
         expected = ["source/added.rst", "source/changed.rst", "source/deleted.rst"]
         self.assertEqual(subject.review_changes(manifest, reviews)["guide"], expected)
         self.assertEqual(subject.review_changes(manifest, reviews)["guide"], expected)
+
+    def test_deleted_source_can_be_reported_but_cannot_be_cited_by_a_guide(self):
+        deleted = "source/example/deleted.rst"
+        guide = "guides/STORAGE.md"
+        files = source_files()
+        snapshot, manifest = subject.build_snapshot(files, SHA, DATE)
+        reviews = {"guides": {guide: {
+            "patterns": [deleted], "reviewed_hashes": {deleted: "old"},
+            "reviewed_commit": "0" * 40,
+        }}}
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "guides").mkdir()
+            (root / guide).write_text("# Storage\n", encoding="utf-8")
+            shutil.copytree(subject.ROOT / "slurm templates", root / "slurm templates")
+            report = subject.render_review_report(manifest, reviews)
+            subject.replace_bundle(root, {
+                subject.SNAPSHOT: snapshot, "sources.json": subject.json_bytes(manifest),
+                "guides/reviewed_sources.json": subject.json_bytes(reviews),
+                "UPSTREAM_CHANGES.md": report, "LICENSE": files["LICENSE"],
+            })
+            self.assertIn(f"`{deleted}` (removed upstream)".encode(), report)
+            self.assertEqual(check(root), [])
+            self.assertTrue(any("need source review" in error for error in check(root, strict_review=True)))
+            (root / guide).write_text(f"# Storage\n\nSource: {deleted}\n", encoding="utf-8")
+            self.assertEqual(check(root), [f"{Path(guide)}: upstream source path missing: {deleted}"])
 
     def test_network_failure_preserves_existing_files(self):
         with tempfile.TemporaryDirectory() as folder:

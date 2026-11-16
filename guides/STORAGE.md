@@ -25,6 +25,15 @@ Record the allocation's actual policy and restoration arrangements in the
 consuming project's docs/VSC.md. Preserve valuable checkpoints and independent
 copies of irreplaceable results.
 
+## Recover files from snapshots
+
+For KU Leuven and UHasselt, snapshots cover `$VSC_HOME` and `$VSC_DATA`.
+Look in the `.snapshot` directory of the folder where the file was stored.
+Choose a snapshot from before the deletion or change, then copy the file to a
+safe location. The [official HPC Data Recovery guide](https://docs.vscentrum.be/data/hpc_data_recovery.html#restoring-snapshot)
+describes where to find the snapshots and how long they are kept. Use its
+KU Leuven/UHasselt tab.
+
 ## Lustre and GPFS are different compute tiers
 
 wICE uses Lustre, while Mindwell uses IBM Storage Scale / GPFS. Intensive I/O
@@ -95,7 +104,7 @@ client serves Tier-1 Data, separate from Leuven compute scratch.
 
 Sources: source/leuven/tier2_hardware/kuleuven_storage.rst,
 source/leuven/tier2_hardware/parallel_filesystems.rst,
-source/leuven/tier2_hardware/restoring_a_snapshot.rst,
-source/accounts/managing_disk_usage.rst, source/data/managing_storage_usage.rst
+source/data/hpc_data_recovery.rst, source/data/hpc_data_recovery_leuven.rst,
+source/accounts/managing_disk_usage.rst, source/data/managing_storage_usage.rst,
 source/data/storage.rst, source/data/tier1data/clients.rst and
 source/data/tier1data/clients/ownCloud.rst.

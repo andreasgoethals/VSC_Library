@@ -29,7 +29,8 @@ def check(root: Path = ROOT, strict_review: bool = False) -> list[str]:
     if hashlib.sha256((root / "LICENSE").read_bytes()).hexdigest() != manifest["text_files"]["LICENSE"]["sha256"]:
         errors.append("Upstream LICENSE has changed or was not retained exactly.")
     reviews = json.loads((root / "guides/reviewed_sources.json").read_text(encoding="utf-8"))
-    if (root / "UPSTREAM_CHANGES.md").read_bytes() != render_review_report(manifest, reviews):
+    review_report = root / "UPSTREAM_CHANGES.md"
+    if review_report.read_bytes() != render_review_report(manifest, reviews):
         errors.append("UPSTREAM_CHANGES.md does not match source/review metadata.")
     stale = review_changes(manifest, reviews)
     if stale:
@@ -52,6 +53,9 @@ def check(root: Path = ROOT, strict_review: bool = False) -> list[str]:
             target = destination.split("#")[0]
             if target and not (path.parent / target).exists():
                 errors.append(f"{path.relative_to(root)}: broken local link {destination}")
+        # The generated review report records deletions as well as current paths.
+        if path == review_report:
+            continue
         for source in re.findall(r"source/[A-Za-z0-9_./-]+\.(?:rst|md|py|sh)", prose):
             if source not in manifest["text_files"]:
                 errors.append(f"{path.relative_to(root)}: upstream source path missing: {source}")

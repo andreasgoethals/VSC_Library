@@ -189,7 +189,11 @@ def render_review_report(manifest: dict, reviews: dict) -> bytes:
         old_commit = review.get("reviewed_commit")
         if old_commit:
             lines.append(f"[Compare with the reviewed revision]({URL}/compare/{old_commit}...{manifest['commit']}).\n\n")
-        lines.extend(f"- [{name}]({URL}/blob/{manifest['commit']}/{name})\n" for name in paths)
+        for name in paths:
+            if name in manifest["text_files"]:
+                lines.append(f"- [{name}]({URL}/blob/{manifest['commit']}/{name})\n")
+            else:
+                lines.append(f"- `{name}` (removed upstream)\n")
     return "".join(lines).encode()
 
 

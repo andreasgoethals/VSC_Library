@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-16
+
+- Updated the storage guide to use VSC's new Leuven snapshot recovery instructions. The daily refresh now publishes its review summary before validation. The checker permits upstream deletions in that generated report and still flags stale citations in guides.
+
+- Refreshed the official documentation snapshot to [72c0de6c8496](https://github.com/hpcleuven/VscDocumentation/commit/72c0de6c84968d9acf31df69c16cafae1585a051) (upstream commit date 2026-11-15); recomputed source hashes and guide review flags.
+
 ## 2026-11-13
 
 - Refreshed the official documentation snapshot to [a082e1daf0a7](https://github.com/hpcleuven/VscDocumentation/commit/a082e1daf0a7a164e6ccb37f1a935d7c6b72acee) (upstream commit date 2026-11-12); recomputed source hashes and guide review flags.

@@ -6,24 +6,23 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/slurm_specifics.rst"
       ],
-      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
-      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
+      "review_note": "Reviewed the Leuven recovery instructions, storage cross-references, and the separate VUB and Sofia recovery instructions. Updated the storage guide. The Leuven cross-reference changes leave cluster guidance and template storage requirements intact.",
+      "reviewed_commit": "72c0de6c84968d9acf31df69c16cafae1585a051",
       "reviewed_hashes": {
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
         "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
         "source/leuven/tier2_hardware.rst": "4bba30d487541ab0aac90758b1c1722ba202a430bc2053b318dfc8c54f10cbee",
         "source/leuven/tier2_hardware/icelake_mlc.txt": "23c3c24ff24bb6ced7d2030abf916b640621b8a92163c982297615980f574123",
-        "source/leuven/tier2_hardware/kuleuven_storage.rst": "66533cca6c92b443262336cdaabf28b7ce12c0a2036a73c0529cc60ede554671",
+        "source/leuven/tier2_hardware/kuleuven_storage.rst": "c9f4df017535b0597533508dd7f8d338982c6b96a57bbad807b22d29f49659c9",
         "source/leuven/tier2_hardware/kuleuven_storage_quota_table.rst": "f2b42252084581190eb5b2fb4fe5abdc4605fa41aedf1cc39b6cea80fd15d3c3",
         "source/leuven/tier2_hardware/kuluh_pfs.svg": "3e318447c14cffa72990448baa79fb9bae67d53fbd5c61f167fdc111b3e7a92a",
         "source/leuven/tier2_hardware/memory_bandwidth_and_latency_wice.rst": "b4573643e1a541a9a61d9cafae1260c348719b5b1220239a3084c4132dc22000",
         "source/leuven/tier2_hardware/mindwell_hardware.rst": "78ee095b0cfc509d5e021c9cf318d8bdf73637ddcd9d2af13b7d046676d47744",
         "source/leuven/tier2_hardware/parallel_filesystems.rst": "bb2b84527c8aceebb26e43b0b3b61f3cd9c8669fcc9c46102ff4a3a8a945a11d",
-        "source/leuven/tier2_hardware/restoring_a_snapshot.rst": "e3a8e1b922a96b2ef7789b08210e91d05e717e34d976df3d7da944adcdb6dc30",
         "source/leuven/tier2_hardware/tier2_login_nodes.rst": "871c4a5659b204b100ebefefe78cb7459eca05de77320dfffdb619ba307fd76b",
         "source/leuven/tier2_hardware/wice_hardware.rst": "b7846afb87c214cc10dd7af99c1bb1f49939e9dd776e5c8f9e4698458faceee4",
         "source/leuven/tier2_mindwell.rst": "53c4bc4b25c3b2c7bf9f8bb077f6647a6ce4aeb81ed434eb9af96f5673128dbc",
-        "source/leuven/tier2_storage.rst": "01446f6c09545436771db4876b545dbbd4c7680f7ebe365358aa4803a8dba49d",
+        "source/leuven/tier2_storage.rst": "b9ce19d5d56867f16acfd6562f5f3cf91a1e008dbc9835f1d1f8bd40a756104c",
         "source/leuven/tier2_wice.rst": "cdbc0f4c103051d48f4d7eb803bf697ad18bb81b0604bc60b8c14dc44c83dca2",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }
@@ -251,21 +250,23 @@
         "source/accounts/*storage*",
         "source/accounts/managing_disk_usage.rst",
         "source/leuven/tier2_hardware/*storage*",
-        "source/leuven/tier2_hardware/parallel_filesystems.rst",
-        "source/leuven/tier2_hardware/restoring_a_snapshot.rst"
+        "source/leuven/tier2_hardware/parallel_filesystems.rst"
       ],
-      "review_note": "Reviewed the Tier-1 Data client index and ownCloud desktop guide at 3ad7e8496a11. Added platform-specific sync and metadata, permissions and bulk-transfer limits to the storage guide.",
-      "reviewed_commit": "3ad7e8496a11620432832d09e06b3e0444e2d147",
+      "review_note": "Reviewed the Leuven recovery instructions, storage cross-references, and the separate VUB and Sofia recovery instructions. Updated the storage guide. The Leuven cross-reference changes leave cluster guidance and template storage requirements intact.",
+      "reviewed_commit": "72c0de6c84968d9acf31df69c16cafae1585a051",
       "reviewed_hashes": {
         "source/accounts/managing_disk_usage.rst": "f02ea7a8430976bfafa1b9077009b9d928335e6c4af1f1651ef101203cfb69d4",
         "source/accounts/vo-storage.rst": "bbe37912edc348242ad2fe14f373180a7a50536672b421fd3229dd98e161f8ef",
         "source/data/.vscode/settings.json": "6a12643fe3f881316ef69083c4867be870abc9944cfdef73cfbb69d277175eeb",
         "source/data/cyberduck/vsc_Tier1_Data.cyberduckprofile": "32d67d6d247b9dd69c1f8d42943a75713e8cf1ddad30eb1b72d0e81ad66288a5",
         "source/data/data_management_guidelines.rst": "31aaad455f5d51a3b96b980174a05accc4d7fc6b0724de108b802d576b86e3be",
+        "source/data/hpc_data_recovery.rst": "6a50c32445e6ab6a62b5bf41d2a1ed0aa6b209b03be11cdfaf67b75cc30debd9",
+        "source/data/hpc_data_recovery_leuven.rst": "b7110b635f4fc6fb6df5d784febbc7829a7491224ce86b5e02834a903e87519b",
+        "source/data/hpc_data_recovery_mysnapshots.rst": "a4c0fafd1a488453e511301a528532b9238939ea40b57fce5ce23576999a6f86",
         "source/data/index.rst": "fe2e8a922229add080abfa47b829400eac3b469fffa3bd6e90f896b8b731152e",
         "source/data/managing_storage_usage.rst": "8592f5602700258ff90ff774c2837e5413a50bf385f260ab984753ac3e2a2dd4",
         "source/data/request_more_storage.rst": "689b44d06a650cdd9e90c0673f3e651a37a79cfa3a84fe2c0088fa352ca4f890",
-        "source/data/storage.rst": "2fa20e0c899469616f690ce222c4a276113ec4b77e546510084f101e21ecef39",
+        "source/data/storage.rst": "5d229860549245c09d00ca5d49d1cf4207de3eb854e501a8caeac8a3ff27c295",
         "source/data/storage_locations.rst": "22b869ae989ce99547eb7e1b898462834000933394002b3ab24b8be07ca9dfd7",
         "source/data/tier1_data_service.rst": "44b2b2266b5b5ade40f0dc87856e45d0feca30ef031d5daa3a789975e4aa5d95",
         "source/data/tier1data/clients.rst": "0adcaa0dcebf68b1a71c310dd38ca2be4126b5c757fe7c3734695dfd07ee32cb",
@@ -296,10 +297,9 @@
         "source/data/transfer/scp_sftp.rst": "d61730e458f206c157865a3234c273911632835c602f5e4240d4a315657a6e33",
         "source/data/transfer/windows.rst": "5ab48b0c939dbf4f18023d7a83bf9f4e1f8ed05b72296ec28835ddcc4cb619ac",
         "source/data/transfer/winscp.rst": "c80cb62a439bfb231e9c704a73af7aa6b3c3d804aaa178b6343534a096e18749",
-        "source/leuven/tier2_hardware/kuleuven_storage.rst": "66533cca6c92b443262336cdaabf28b7ce12c0a2036a73c0529cc60ede554671",
+        "source/leuven/tier2_hardware/kuleuven_storage.rst": "c9f4df017535b0597533508dd7f8d338982c6b96a57bbad807b22d29f49659c9",
         "source/leuven/tier2_hardware/kuleuven_storage_quota_table.rst": "f2b42252084581190eb5b2fb4fe5abdc4605fa41aedf1cc39b6cea80fd15d3c3",
-        "source/leuven/tier2_hardware/parallel_filesystems.rst": "bb2b84527c8aceebb26e43b0b3b61f3cd9c8669fcc9c46102ff4a3a8a945a11d",
-        "source/leuven/tier2_hardware/restoring_a_snapshot.rst": "e3a8e1b922a96b2ef7789b08210e91d05e717e34d976df3d7da944adcdb6dc30"
+        "source/leuven/tier2_hardware/parallel_filesystems.rst": "bb2b84527c8aceebb26e43b0b3b61f3cd9c8669fcc9c46102ff4a3a8a945a11d"
       }
     },
     "slurm templates/README.md": {
@@ -309,8 +309,8 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/tier2_hardware/kuleuven_storage.rst"
       ],
-      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
-      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
+      "review_note": "Reviewed the Leuven recovery instructions, storage cross-references, and the separate VUB and Sofia recovery instructions. Updated the storage guide. The Leuven cross-reference changes leave cluster guidance and template storage requirements intact.",
+      "reviewed_commit": "72c0de6c84968d9acf31df69c16cafae1585a051",
       "reviewed_hashes": {
         "source/compute/jobs/checkpointing_framework.rst": "da22ad02e63e579291c9cc71823a4bf7e20afee4fc542f537c4ac49485cb264d",
         "source/compute/jobs/clusters_slurm.rst": "e7e4b6007d9b5c5ff1012e14618a1e54afdbe90b9aa6a3d0db9420abc0b60d7b",
@@ -337,7 +337,7 @@
         "source/compute/jobs/workflows_using_job_dependencies.rst": "4323847e799598af50f7622e0e7ca64d75f974e555a60594cf943294f92ed93f",
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
         "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",
-        "source/leuven/tier2_hardware/kuleuven_storage.rst": "66533cca6c92b443262336cdaabf28b7ce12c0a2036a73c0529cc60ede554671",
+        "source/leuven/tier2_hardware/kuleuven_storage.rst": "c9f4df017535b0597533508dd7f8d338982c6b96a57bbad807b22d29f49659c9",
         "source/leuven/wice_quick_start.rst": "49adc611642d924ee00e730e563adbafb5e4d752619b0623d72545272068522a"
       }
     }
