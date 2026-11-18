@@ -33,8 +33,8 @@
         "source/compute/terminal/*",
         "source/leuven/tier2_hardware/tier2_login_nodes.rst"
       ],
-      "review_note": "Initial review of current official Leuven scheduler, hardware, storage, software and portal sources; checked reusable patterns against existing project scripts and identified the owner-provided October OnDemand notice separately.",
-      "reviewed_commit": "9475d631a15849b70d84642b17c226b1b89fd28d",
+      "review_note": "The updated account request notice applies to VUB students. The Leuven access guide already directs other sites to their own instructions.",
+      "reviewed_commit": "880026651e4cf7ed58c28b15dcb12a4ee065629c",
       "reviewed_hashes": {
         "source/accounts/access_from_multiple_machines.rst": "8fef65a85c9f0cde8b38a733ca8e0ffd146753a2b113f14f74a481ae5d38109b",
         "source/accounts/authentication.rst": "538436c2e605df03d99f03b93f79d02e362cb6624e1487132ffe1706f1fcf614",
@@ -62,7 +62,7 @@
         "source/accounts/ssh_agent_windows.rst": "4f594ec6346c15e5d291bf16dc2963f299bd077cfb17a79bf9e48792a4d6e397",
         "source/accounts/vo-storage.rst": "bbe37912edc348242ad2fe14f373180a7a50536672b421fd3229dd98e161f8ef",
         "source/accounts/vo.rst": "bb10b272c3de93df43d4b21c6f5bf657f5780cea65b5f77b1d00bd979084f969",
-        "source/accounts/vsc_account.rst": "518ad4be9c9ce8a54a081700c336b972c1c777616a836dc27c062cf1f5b2d036",
+        "source/accounts/vsc_account.rst": "c93f37123c1d82c7efcca827112af20abb13683f059136fcb0e7f461676c23ca",
         "source/accounts/vsc_user_groups.rst": "8f6ff8eea297582f8c1ce753871519c10f52ac329983d25df201119cc695cd8d",
         "source/accounts/where_can_i_store_what_kind_of_data.rst": "04fdd319a4d7c42b808303de34ff1fa847ac04c2352b7aeec5b1e1a646cc637a",
         "source/compute/terminal/basic_linux.rst": "747808d2f0d813ddb3e7418ff260b140a3b062feaa33d15f947eb506eee0f843",
@@ -187,8 +187,8 @@
         "source/leuven/*quick_start.rst",
         "source/leuven/wice_advanced_guide.rst"
       ],
-      "review_note": "Reviewed bc86b66d source/leuven/slurm_specifics.rst: new explicit-memory/cpus-per-task launcher mismatch warning and inline-code formatting. Templates now use partition-default memory with their CPU requests; six guide/template references explain the workaround and allocation checks. Globus guest-collection consent addition does not change the reviewed Leuven workflows.",
-      "reviewed_commit": "bc86b66d0530847caf2a3fa7187808e01d0b624b",
+      "review_note": "Checked Leuven setup, incompatible module stacks, example release, and return to local modules against using_eessi.rst. Added the site-specific setup to the software guide.",
+      "reviewed_commit": "880026651e4cf7ed58c28b15dcb12a4ee065629c",
       "reviewed_hashes": {
         "source/compute/software/developing_software/blas_and_lapack.rst": "25221ac201bf2d771e6fd8e831c03e65476ec7a1814e5ba1739f34a7e54ea9b4",
         "source/compute/software/developing_software/books_parallel.rst": "ab938b7ed701cd94c47b1a1b975b15281d7a135362b58ad3925187f2d5812d1f",
@@ -236,7 +236,7 @@
         "source/compute/software/using_software/cluster_modules.rst": "13faef10a5798ed2bde44c21518987a6541ac37264b95bc6c1c81b3346c00d40",
         "source/compute/software/using_software/module_system_basics.rst": "a856580639be915839d309a3c5e32f451a7bf0be0247f3d2bb3849c79a5a022f",
         "source/compute/software/using_software/requesting_software.rst": "78d1e66f3f56cf8b6f0c303d41ea497ee66ebc5f5ae118381104249208436796",
-        "source/compute/software/using_software/using_eessi.rst": "87a04b020a1599ba4653f6cbb2794ac3ad3b7d621a3bd131e6c7a48dd055a3b5",
+        "source/compute/software/using_software/using_eessi.rst": "03feb22df9428a7e84d43015552eeb024ad5b2b8ed20bf9b22cb1069593e8299",
         "source/compute/software/using_software/using_software.rst": "640c052225e7bb04df158a79c78495e9958b2659b47d8aa9c3f90064ac353750",
         "source/leuven/mindwell_quick_start.rst": "504c6105148fb3f3eb211cfa3169f3ea626d007c98ecf86eb5d308d5066d9268",
         "source/leuven/slurm_specifics.rst": "cafb5e40bff524aabbf44ccf79f3eae598ed8d35417228171117bca5163e78f7",

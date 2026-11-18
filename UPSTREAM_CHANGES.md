@@ -11,23 +11,11 @@ certify cluster availability, local environments or applications.
 | Guide or template group | Source review |
 |---|---|
 | [guides/CLUSTERS.md](<guides/CLUSTERS.md>) | Matches reviewed source |
-| [guides/HPC_AND_ACCESS.md](<guides/HPC_AND_ACCESS.md>) | REVIEW REQUIRED: 1 changed source files |
+| [guides/HPC_AND_ACCESS.md](<guides/HPC_AND_ACCESS.md>) | Matches reviewed source |
 | [guides/INTEGRATION.md](<guides/INTEGRATION.md>) | Matches reviewed source |
 | [guides/ONDEMAND.md](<guides/ONDEMAND.md>) | Matches reviewed source |
 | [guides/OPERATIONS.md](<guides/OPERATIONS.md>) | Matches reviewed source |
 | [guides/SLURM.md](<guides/SLURM.md>) | Matches reviewed source |
-| [guides/SOFTWARE.md](<guides/SOFTWARE.md>) | REVIEW REQUIRED: 1 changed source files |
+| [guides/SOFTWARE.md](<guides/SOFTWARE.md>) | Matches reviewed source |
 | [guides/STORAGE.md](<guides/STORAGE.md>) | Matches reviewed source |
 | [slurm templates/README.md](<slurm templates/README.md>) | Matches reviewed source |
-
-## guides/HPC_AND_ACCESS.md
-
-[Compare with the reviewed revision](https://github.com/hpcleuven/VscDocumentation/compare/9475d631a15849b70d84642b17c226b1b89fd28d...880026651e4cf7ed58c28b15dcb12a4ee065629c).
-
-- [source/accounts/vsc_account.rst](https://github.com/hpcleuven/VscDocumentation/blob/880026651e4cf7ed58c28b15dcb12a4ee065629c/source/accounts/vsc_account.rst)
-
-## guides/SOFTWARE.md
-
-[Compare with the reviewed revision](https://github.com/hpcleuven/VscDocumentation/compare/bc86b66d0530847caf2a3fa7187808e01d0b624b...880026651e4cf7ed58c28b15dcb12a4ee065629c).
-
-- [source/compute/software/using_software/using_eessi.rst](https://github.com/hpcleuven/VscDocumentation/blob/880026651e4cf7ed58c28b15dcb12a4ee065629c/source/compute/software/using_software/using_eessi.rst)

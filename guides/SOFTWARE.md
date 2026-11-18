@@ -17,6 +17,16 @@ GPU 2025a software stacks. Choose a module/environment from the actual target
 node's available toolchain; do not copy a hard-coded module version from an
 old project.
 
+### Using EESSI at KU Leuven / UHasselt
+
+EESSI provides a separate software stack. Check that `ls /cvmfs/software.eessi.io`
+lists files on the target cluster. In a fresh session or job, the Leuven instructions
+use `module --force purge`, `unset MODULEPATH` and
+`module use /cvmfs/software.eessi.io/init/modules/` in that order. Run
+`module avail EESSI` and load an available version. The source illustrates
+the procedure with `EESSI/2025.06`. Start a fresh session to return to the
+local stack. [Official EESSI instructions](https://docs.vscentrum.be/compute/software/using_software/using_eessi.html)
+
 ## Python, virtual environments and conda
 
 Keep the interpreter and environment reproducible: record the module stack,
