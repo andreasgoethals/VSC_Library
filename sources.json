@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "72c0de6c84968d9acf31df69c16cafae1585a051",
+  "commit": "880026651e4cf7ed58c28b15dcb12a4ee065629c",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1281,7 +1281,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "719b2b11d0fa40e689f9ce6a31dbd37c6f81691fdcb1b523c07ab70d751b7b86",
+  "snapshot_sha256": "550850cccb61264166f22bfcee0362cb0863c57272b3bd35d4e0f61caa3f877d",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1360,8 +1360,8 @@
       "sha256": "9d59d5bf684ae3e316d40de0df32e613f704d97896c50912185c0b3b0250f7a5"
     },
     "source/_static/css/vsc.css": {
-      "bytes": 7685,
-      "sha256": "4cc8fb7da3a44c54bd8c1c266a0181ceac4a32629e3f1e0d8f8d7ab3bb0a607b"
+      "bytes": 7740,
+      "sha256": "0c8d5ba3fc2c01222a1efdda5a80ecf0858c309cc1267d7f053c5f1996998d5b"
     },
     "source/_static/fa-square-bluesky.svg": {
       "bytes": 1768,
@@ -1488,8 +1488,8 @@
       "sha256": "bb10b272c3de93df43d4b21c6f5bf657f5780cea65b5f77b1d00bd979084f969"
     },
     "source/accounts/vsc_account.rst": {
-      "bytes": 7193,
-      "sha256": "518ad4be9c9ce8a54a081700c336b972c1c777616a836dc27c062cf1f5b2d036"
+      "bytes": 7555,
+      "sha256": "c93f37123c1d82c7efcca827112af20abb13683f059136fcb0e7f461676c23ca"
     },
     "source/accounts/vsc_user_groups.rst": {
       "bytes": 4417,
@@ -2040,8 +2040,8 @@
       "sha256": "78d1e66f3f56cf8b6f0c303d41ea497ee66ebc5f5ae118381104249208436796"
     },
     "source/compute/software/using_software/using_eessi.rst": {
-      "bytes": 5445,
-      "sha256": "87a04b020a1599ba4653f6cbb2794ac3ad3b7d621a3bd131e6c7a48dd055a3b5"
+      "bytes": 6928,
+      "sha256": "03feb22df9428a7e84d43015552eeb024ad5b2b8ed20bf9b22cb1069593e8299"
     },
     "source/compute/software/using_software/using_software.rst": {
       "bytes": 1407,
@@ -2144,8 +2144,8 @@
       "sha256": "4de86b168d0be7249a65ddce86bb2bc85373f01ca37d895bd89d5d32747be956"
     },
     "source/conf.py": {
-      "bytes": 23585,
-      "sha256": "ed6313a6060cec49bad877a620198955563c21a6fecb07c0dc52ff47a6a64a1c"
+      "bytes": 23609,
+      "sha256": "49a3062a868587c46900bac911a7efc32cbb5151049b813013fefa174207c54c"
     },
     "source/contact_vsc.rst": {
       "bytes": 724,
@@ -2556,5 +2556,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-15T16:59:08Z"
+  "upstream_committed_at": "2026-11-18T11:11:13Z"
 }
