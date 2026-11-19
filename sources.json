@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "880026651e4cf7ed58c28b15dcb12a4ee065629c",
+  "commit": "54307c3705518b9d7326ba6065338a0c2d0b49fa",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1281,7 +1281,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "550850cccb61264166f22bfcee0362cb0863c57272b3bd35d4e0f61caa3f877d",
+  "snapshot_sha256": "f287d4f670e505c34de0c5300998d5d25fab5319a9d23530ec8467201c9c5f76",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1644,8 +1644,8 @@
       "sha256": "908d07bd306e17dd1b37ffa7f2ab207c948cf16ed20a3d9eef15ec9c2a18a41d"
     },
     "source/cloud/pilot/custom_images.md": {
-      "bytes": 1635,
-      "sha256": "bfac38cf442d3562766d0338c361445be15d40068a9f493f8081408ef902b274"
+      "bytes": 1571,
+      "sha256": "8238b3e526adb32a1202e4f0e72e19b15637365460962770f05d4d78756710e4"
     },
     "source/cloud/pilot/index.rst": {
       "bytes": 1052,
@@ -1653,11 +1653,11 @@
     },
     "source/cloud/pilot/networking.md": {
       "bytes": 2837,
-      "sha256": "a8acba7e6e28617d5ed407d7ab387650600b3ee917226b4e3f464119193340d0"
+      "sha256": "f7277a57798dc5e06f2cba66905446ec8e38b8f1d7abf7aff8ad4778da6b2362"
     },
     "source/cloud/pilot/opentofu.md": {
       "bytes": 18587,
-      "sha256": "8e9fa63a7b0cbaf97983a1c3907e9fd24672f83ea480b49ea530713b75f7c250"
+      "sha256": "c9517b4e8f390348cd6989b597b9961a44d764b5b2517b47e8d78ff5e1ce2d20"
     },
     "source/cloud/pilot/shares.md": {
       "bytes": 373,
@@ -2556,5 +2556,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-18T11:11:13Z"
+  "upstream_committed_at": "2026-11-19T10:14:58Z"
 }

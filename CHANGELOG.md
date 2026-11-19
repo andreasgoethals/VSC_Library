@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-19
+
+- Refreshed the official documentation snapshot to [54307c370551](https://github.com/hpcleuven/VscDocumentation/commit/54307c3705518b9d7326ba6065338a0c2d0b49fa) (upstream commit date 2026-11-19); recomputed source hashes and guide review flags.
+
 ## 2026-11-18
 
 - Reviewed the VUB student-account notice and site-specific EESSI instructions. Added the Leuven EESSI setup to the software guide.
