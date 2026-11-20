@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-20
+
+- Refreshed the official documentation snapshot to [7b3ad7603275](https://github.com/hpcleuven/VscDocumentation/commit/7b3ad7603275467280472295cde0207b3295607d) (upstream commit date 2026-11-19); recomputed source hashes and guide review flags.
+
+- Clarified certificate and SSH key setup in the access guide and checked the moved location rules. The storage source corrected a typo in its snapshot recovery instructions.
+
 ## 2026-11-19
 
 - Refreshed the official documentation snapshot to [54307c370551](https://github.com/hpcleuven/VscDocumentation/commit/54307c3705518b9d7326ba6065338a0c2d0b49fa) (upstream commit date 2026-11-19); recomputed source hashes and guide review flags.

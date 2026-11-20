@@ -27,11 +27,12 @@ turn it into an interactive compute allocation.
 
 ## SSH from Windows
 
-Use the current official [account and access instructions](https://docs.vscentrum.be/accounts/index.html)
-to register the account, configure SSH keys and follow any MFA/certificate
-requirements. Windows OpenSSH, MobaXterm and PuTTY have distinct setup paths;
-the offline snapshot contains instructions for each. Protect the private key
-and keep it outside repositories.
+Check which authentication method your target cluster supports. For clusters
+that support MFA, sign in with the VSC certificate flow. There is no separate
+SSH key to generate or upload. For a cluster that uses SSH keys, generate the
+pair locally, upload the public key to your VSC account and keep the private
+key on your device. The official Windows instructions cover OpenSSH, MobaXterm
+and PuTTY. [VSC account and access instructions](https://docs.vscentrum.be/accounts/index.html)
 
 ### Location access restrictions (KU Leuven / UHasselt)
 
@@ -48,8 +49,7 @@ rules, and the procedure depends on the laptop:
   clusters, need only the certificate.
 
 The other VSC sites apply their own firewall rules; do not transfer these
-Leuven rules to them. Source: source/accounts/authentication.rst, label
-location_access_restrictions.
+Leuven rules to them. [Official location access restrictions](https://github.com/hpcleuven/VscDocumentation/blob/7b3ad7603275467280472295cde0207b3295607d/source/accounts/location_access_restrictions.rst)
 
 From PowerShell, after configuring authentication:
 
@@ -84,5 +84,6 @@ authentication details can differ. Read the corresponding source section
 before using them. Leuven examples in this library are not universal VSC commands.
 
 Sources in the offline snapshot: source/accounts/index.rst,
-source/accounts/authentication.rst, source/accounts/generating_keys_windows.rst,
+source/accounts/authentication.rst, source/accounts/location_access_restrictions.rst,
+source/compute/terminal/windows_client.rst, source/accounts/generating_keys_windows.rst,
 source/compute/portal/index.rst and source/leuven/tier2_hardware/tier2_login_nodes.rst.

@@ -1,8 +1,8 @@
 VSC Repository - automatically scraped official VSC documentation
 Repository: https://github.com/hpcleuven/VscDocumentation
 Branch: master
-Commit: 54307c3705518b9d7326ba6065338a0c2d0b49fa
-Upstream commit date: 2026-11-19T10:14:58Z
+Commit: 7b3ad7603275467280472295cde0207b3295607d
+Upstream commit date: 2026-11-19T14:04:29Z
 License: GPL-3.0 (upstream LICENSE is included below and retained at repository root).
 Content is upstream source, including historical pages and site-specific tabs.
 Read guides/ for current KU Leuven interpretation; consult live status before running jobs.
@@ -48,6 +48,7 @@ Included files:
   source/accounts/how_to_request_more_quota.rst
   source/accounts/hpc_for_education.rst
   source/accounts/index.rst
+  source/accounts/location_access_restrictions.rst
   source/accounts/management.rst
   source/accounts/managing_disk_usage.rst
   source/accounts/messed_up_keys.rst
@@ -2118,66 +2119,12 @@ clusters.
 
 .. _location_access_restrictions:
 
-Location Access Restrictions
-============================
+.. include:: location_access_restrictions.rst
 
-.. tab-set::
-   :sync-group: vsc-sites
+.. toctree::
+   :hidden:
 
-   .. tab-item:: KU Leuven/UHasselt
-      :sync: kuluh
-
-      Since March 2026, the firewall access to the HPC cluster is resolved by the global KU Leuven firewall rules. This impacts connections to the Tier-2 cluster.
-
-      There is a difference between connecting from a managed KU Leuven laptop and unmanaged laptops.
-
-      KU Leuven managed laptops
-         Use MFA (certificate) for connections both from Belgium and from abroad. No need to request :ref:`additional firewall login <additional_firewall>`.
-
-      Non-managed laptops
-         There are several possibilities to connect to the KU Leuven VSC clusters:
-
-         * From all locations (connecting from VPN B zone, from other VSC universities, from other Belgian IP addresses and from abroad): open the firewall page (https://firewall.vscentrum.be) and request a certificate. The firewall page only needs to be active when making new connections to the cluster.
-         * Exception for connections from within VSC network (*i.e.* other VSC clusters) - certificate is sufficient
-
-   .. tab-item:: UAntwerpen
-      :sync: ua
-
-      All UAntwerpen clusters are behind a firewall, which is configured by default to block all traffic from abroad.
-      If you want to access any VSC cluster from abroad, it is necessary that you first authorize your own connection on the `VSC Firewall`_.
-      Once your connection is authorized, you can proceed as usual.
-
-      .. note::
-
-         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
-
-   .. tab-item:: UGent
-      :sync: ug
-
-      All UGent clusters are behind a firewall, which is configured by default to block all traffic from abroad.
-      If you want to access any VSC cluster from abroad, it is necessary that you first authorize your own connection on the `VSC Firewall`_.
-      Once your connection is authorized, you can proceed as usual.
-
-      .. note::
-
-         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
-
-   .. tab-item:: VUB
-      :sync: vub
-
-      .. rubric:: SSH access
-
-      All VUB-HPC Tier-2 clusters are gated behind a firewall, which is configured by default to block all SSH traffic from abroad.
-      If you want to access a VSC cluster via SSH from abroad, you must first authorize your own connection on the `VSC Firewall`_.
-      Once your connection is authorized, you can proceed as usual.
-
-      .. note::
-
-         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
-
-      .. rubric:: Portal access
-
-      The VUB-HPC Tier-2 OnDemand portal can be accessed from abroad without authorization on the VSC Firewall.
+   location_access_restrictions
 
 ========================================================================
 FILE: source/accounts/clusters_mfa.rst
@@ -3009,6 +2956,73 @@ their VSC account and access the VSC infrastructure:
    authentication
    management
    hpc_for_education
+
+========================================================================
+FILE: source/accounts/location_access_restrictions.rst
+========================================================================
+Location Access Restrictions
+============================
+
+Depending on your institution and location, additional network access
+restrictions may apply when connecting to VSC clusters.
+
+.. tab-set::
+   :sync-group: vsc-sites
+
+   .. tab-item:: KU Leuven/UHasselt
+      :sync: kuluh
+
+      Since March 2026, the firewall access to the HPC cluster is resolved by the global KU Leuven firewall rules. This impacts connections to the Tier-2 cluster.
+
+      There is a difference between connecting from a managed KU Leuven laptop and unmanaged laptops.
+
+      KU Leuven managed laptops
+         Use MFA (certificate) for connections both from Belgium and from abroad. No need to request :ref:`additional firewall login <additional_firewall>`.
+
+      Non-managed laptops
+         There are several possibilities to connect to the KU Leuven VSC clusters:
+
+         * From all locations (connecting from VPN B zone, from other VSC universities, from other Belgian IP addresses and from abroad): open the firewall page (https://firewall.vscentrum.be) and request a certificate. The firewall page only needs to be active when making new connections to the cluster.
+         * Exception for connections from within VSC network (*i.e.* other VSC clusters) - certificate is sufficient
+
+   .. tab-item:: UAntwerpen
+      :sync: ua
+
+      All UAntwerpen clusters are behind a firewall, which is configured by default to block all traffic from abroad.
+      If you want to access any VSC cluster from abroad, it is necessary that you first authorize your own connection on the `VSC Firewall`_.
+      Once your connection is authorized, you can proceed as usual.
+
+      .. note::
+
+         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
+
+   .. tab-item:: UGent
+      :sync: ug
+
+      All UGent clusters are behind a firewall, which is configured by default to block all traffic from abroad.
+      If you want to access any VSC cluster from abroad, it is necessary that you first authorize your own connection on the `VSC Firewall`_.
+      Once your connection is authorized, you can proceed as usual.
+
+      .. note::
+
+         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
+
+   .. tab-item:: VUB
+      :sync: vub
+
+      .. rubric:: Portal access
+
+      The VUB-HPC Tier-2 OnDemand portal can be accessed from abroad without authorization on the VSC Firewall.
+
+      .. rubric:: SSH access
+
+      All VUB-HPC Tier-2 clusters are gated behind a firewall, which is configured by default to block all SSH traffic from abroad.
+      If you want to access a VSC cluster via SSH from abroad, you must first authorize your own connection on the `VSC Firewall`_.
+      Once your connection is authorized, you can proceed as usual.
+
+      .. note::
+
+         The `VSC Firewall`_ page only needs to be active when making new connections to the VSC cluster.
 
 ========================================================================
 FILE: source/accounts/management.rst
@@ -27251,9 +27265,16 @@ superuser (*root*) permissions.
 Getting ready to login
 ======================
 
-Before you can log in with SSH to a VSC cluster, you need to generate a pair of
-SSH keys and upload them to your VSC account. You can create your keys in Linux
-with `OpenSSH`_, please check our documentation on :ref:`generating keys linux`.
+Before you can log in to a VSC cluster using SSH, you need to
+check which authentication method the cluster supports.
+
+For clusters that support :ref:`mfa_login`, SSH keys are not required.
+
+For clusters that do not support MFA, you need to generate an SSH key pair and
+upload the public key to your VSC account on your your `VSC Account - Edit
+Account`_ page before logging in. You can generate SSH keys on Linux using
+`OpenSSH`_. See :ref:`generating keys linux` for instructions.
+
 
 Connecting to the cluster
 =========================
@@ -27290,9 +27311,15 @@ also applies to macOS as it based on the same `GNU`_ operating system as Linux.
 Getting ready to login
 ======================
 
-Before you can log in with SSH to a VSC cluster, you need to generate a pair of
-SSH keys and upload them to your VSC account. You can create your keys in macOS
-with `OpenSSH`_, please check our documentation on :ref:`generating keys macos`.
+Before you can log in to a VSC cluster using SSH, you need to
+check which authentication method the cluster supports.
+
+For clusters that support :ref:`mfa_login`, SSH keys are not required.
+
+For clusters that do not support MFA, you need to generate an SSH key pair and
+upload your public key to your VSC account on your your `VSC Account - Edit
+Account`_ page before logging in.  You can generate SSH keys on macOS
+with `OpenSSH`_. See :ref:`generating keys macos` for instructions.
 
 Connecting to the cluster
 =========================
@@ -29033,10 +29060,15 @@ FILE: source/compute/terminal/windows_client.rst
 Getting ready to login
 ======================
 
-Before you can log in with SSH to a VSC cluster, you need to generate a pair of
-SSH keys and upload them to your VSC account. There are multiple ways to create
-your keys in Windows, please check our documentation on
-:ref:`generating keys windows`.
+Before you can log in to a VSC cluster using SSH, you need to
+check which authentication method the cluster supports.
+
+For clusters that support :ref:`mfa_login`, SSH keys are not required.
+
+For clusters that do not support MFA, you need to generate an SSH key pair and
+upload the public key to your VSC account on your your `VSC Account - Edit
+Account`_ page before logging in.  There are multiple ways to generate SSH keys
+in Windows. See :ref:`generating keys windows` for instructions.
 
 Connecting to the cluster
 =========================
@@ -30284,7 +30316,7 @@ familiar bash shell operations.
 FILE: source/data/hpc_data_recovery_mysnapshots.rst
 ========================================================================
 The command tool **mysnapshots** provides a simple interface to restore a file
-or directory from a snapshots.
+or directory from a snapshot.
 
 First, change your current directory (with ``cd``) to the directory that
 contained (or still contains) the file/directory to be restored. If that parent
