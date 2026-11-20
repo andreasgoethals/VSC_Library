@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "7b3ad7603275467280472295cde0207b3295607d",
+  "commit": "1eb3f13042db9357566370be584589b386d0aff3",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -772,6 +772,11 @@
       "reason": "binary asset; see upstream",
       "sha256": "66673656cd2e1a7f9af430dd31969b3f3486fe22aa6b6dc52c4d04456abf9bd7"
     },
+    "source/data/tier1data/images/mango_portal/mango_portal_name-pencil-download-link.png": {
+      "bytes": 6803,
+      "reason": "binary asset; see upstream",
+      "sha256": "105e67c7864ab1e0127b5ac544edf3b2ffb791ce44100f413f4457466679a2ce"
+    },
     "source/data/tier1data/images/mango_portal/mango_portal_permissions.png": {
       "bytes": 94211,
       "reason": "binary asset; see upstream",
@@ -1281,7 +1286,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "749e6c0519f06961fe482666df55f4362e69d287bbc325fee90a5430ef086ae2",
+  "snapshot_sha256": "a3f2e5c0e7810158ca673b62863cb1c0ef8dcc4439a1689051cd9f2d432fc249",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -2216,8 +2221,8 @@
       "sha256": "c8a08dc1aa35095d322737a11c791d1abbfcbf004b9c6b0b53de34be042933b3"
     },
     "source/data/tier1data/clients/mango_portal.rst": {
-      "bytes": 15381,
-      "sha256": "662610dfe839eb237be4df4220d83749e529db80cff3726cac9de139d3949b64"
+      "bytes": 15985,
+      "sha256": "16f019e010302e7523653a7e794f2787403a5982bf3cec6a02782f2723c35a5a"
     },
     "source/data/tier1data/clients/ownCloud.rst": {
       "bytes": 9752,
@@ -2560,5 +2565,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-19T14:04:29Z"
+  "upstream_committed_at": "2026-11-20T10:12:02Z"
 }
