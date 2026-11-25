@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "1eb3f13042db9357566370be584589b386d0aff3",
+  "commit": "9cfe1461c83a52b7aeba9293eb8839e59b660482",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1286,7 +1286,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "a3f2e5c0e7810158ca673b62863cb1c0ef8dcc4439a1689051cd9f2d432fc249",
+  "snapshot_sha256": "da05a83dbfdc714c9fe3b455faf8993b9a5a5df4da209cde1b0f44a01d79b353",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -2373,8 +2373,8 @@
       "sha256": "e5edc4598099dab47c0386d5eeab8dbc559a86ad9b1021052e2b94a91f8cb874"
     },
     "source/globus/using_globus_via_web.rst": {
-      "bytes": 7391,
-      "sha256": "507f266c30bd3b8158f6e0207ca3b996b7a1b88cf69965d6e5bb9aadd3e6b0dd"
+      "bytes": 7732,
+      "sha256": "2fae74d911571080163c5dfd4035981c1389cc8f03fb72949c354023d9bf6957"
     },
     "source/how_do_i_acknowledge_the_vsc_in_publications.rst": {
       "bytes": 1019,
@@ -2565,5 +2565,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-20T10:12:02Z"
+  "upstream_committed_at": "2026-11-25T08:18:39Z"
 }

@@ -1,8 +1,8 @@
 VSC Repository - automatically scraped official VSC documentation
 Repository: https://github.com/hpcleuven/VscDocumentation
 Branch: master
-Commit: 1eb3f13042db9357566370be584589b386d0aff3
-Upstream commit date: 2026-11-20T10:12:02Z
+Commit: 9cfe1461c83a52b7aeba9293eb8839e59b660482
+Upstream commit date: 2026-11-25T08:18:39Z
 License: GPL-3.0 (upstream LICENSE is included below and retained at repository root).
 Content is upstream source, including historical pages and site-specific tabs.
 Read guides/ for current KU Leuven interpretation; consult live status before running jobs.
@@ -37793,6 +37793,10 @@ Conveniently, the arrow on the start button indicated the direction of the trans
 .. figure:: using_globus_via_web/transfer.png
 
 Additionally, Globus has a multitude of options for transfers under the dropdown 'Transfer & Timer Options', between the start buttons. 
+
+.. note::
+   One of the options is related to encryption.
+   While the control channel (your login and command data) is always encrypted, the data channel between endpoints is authenticated but unencrypted in standard configurations to maximize transfer speeds. If you transfer sensitive data, check if the encryption option is activated. 
 
 .. note::
    Each panel has a 'refresh' button, represented by a circular arrow. 
