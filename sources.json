@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "9cfe1461c83a52b7aeba9293eb8839e59b660482",
+  "commit": "9ab10517a76a965009f061e343d7154b1fef5b28",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1286,7 +1286,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "da05a83dbfdc714c9fe3b455faf8993b9a5a5df4da209cde1b0f44a01d79b353",
+  "snapshot_sha256": "e7eb409be256b41a08cce7584498e0ecc4102eed9948b8bc7b5f4dc9437cd453",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1793,8 +1793,8 @@
       "sha256": "2bfaa1700c45ed163d7601cf796796ff3abc8efcbd42d9845189fa2ab8ef03fd"
     },
     "source/compute/portal/ondemand/desktop.rst": {
-      "bytes": 5061,
-      "sha256": "c266bb6ec4d6cfccc513938e1616474069b92d054eab6898f861387c1a33e070"
+      "bytes": 5038,
+      "sha256": "48554fea7864b8fc0495a2dcbaf29eca71e802b09a9818eba7c311c7d3cfb5b4"
     },
     "source/compute/portal/ondemand/files.rst": {
       "bytes": 1579,
@@ -1917,8 +1917,8 @@
       "sha256": "f514e3b4390a85c039b04085114e3622b8925a2c91f9751642aa878be43cd3ea"
     },
     "source/compute/software/developing_software/mpi_for_distributed_programming.rst": {
-      "bytes": 4473,
-      "sha256": "8da88fa63f1a74e39cc492339bb5b3a7b1beaba78b42f892581b4274ed6f010a"
+      "bytes": 5219,
+      "sha256": "583d6155892a10d23a97731f8da2483967fab72627b8bf9029be67473db65183"
     },
     "source/compute/software/developing_software/ms_visual_studio.rst": {
       "bytes": 3726,
@@ -2153,8 +2153,8 @@
       "sha256": "4de86b168d0be7249a65ddce86bb2bc85373f01ca37d895bd89d5d32747be956"
     },
     "source/conf.py": {
-      "bytes": 23609,
-      "sha256": "49a3062a868587c46900bac911a7efc32cbb5151049b813013fefa174207c54c"
+      "bytes": 23924,
+      "sha256": "c5a7365d1f9c417666166abc07e75f241c8f41b8a06ccd9ce64f8e29ae736c8b"
     },
     "source/contact_vsc.rst": {
       "bytes": 724,
@@ -2565,5 +2565,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-25T08:18:39Z"
+  "upstream_committed_at": "2026-11-26T11:07:38Z"
 }
