@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "commit": "9ab10517a76a965009f061e343d7154b1fef5b28",
+  "commit": "5dcf92cc5c37e0971e99db35af257e2a77ea7274",
   "excluded_assets": {
     "images/cluster_view.odg": {
       "bytes": 44660,
@@ -1286,7 +1286,7 @@
   "repository": "https://github.com/hpcleuven/VscDocumentation",
   "schema_version": 1,
   "snapshot": "VSC Repository.txt",
-  "snapshot_sha256": "e7eb409be256b41a08cce7584498e0ecc4102eed9948b8bc7b5f4dc9437cd453",
+  "snapshot_sha256": "b0101ae3475815d725a87b9d35a444973484239007c3b5f74b9a4739c57f9656",
   "text_files": {
     ".github/workflows/main.yml": {
       "bytes": 338,
@@ -1565,8 +1565,8 @@
       "sha256": "6718a9a0d2a4527cc441671767ca5753b3116899cbc19b465ad2773ed4a1498d"
     },
     "source/brussel/tier1_sofia_changelog.rst": {
-      "bytes": 3257,
-      "sha256": "8d505815bd9f6d8c2fc144cf6c2cac77283e02646562b4670266322eca7faded"
+      "bytes": 3422,
+      "sha256": "2d4ab4bca5f317d45745e025a82cbdc5b9568a651cbdde17e909d449933aef6c"
     },
     "source/brussel/tier2_hardware.rst": {
       "bytes": 198,
@@ -2169,8 +2169,8 @@
       "sha256": "32d67d6d247b9dd69c1f8d42943a75713e8cf1ddad30eb1b72d0e81ad66288a5"
     },
     "source/data/data_management_guidelines.rst": {
-      "bytes": 15728,
-      "sha256": "31aaad455f5d51a3b96b980174a05accc4d7fc6b0724de108b802d576b86e3be"
+      "bytes": 15795,
+      "sha256": "f4a4b19c069bade8a52a6b9aa0b1f001124f8f816627c913507d622d155f790a"
     },
     "source/data/hpc_data_recovery.rst": {
       "bytes": 3821,
@@ -2373,8 +2373,8 @@
       "sha256": "e5edc4598099dab47c0386d5eeab8dbc559a86ad9b1021052e2b94a91f8cb874"
     },
     "source/globus/using_globus_via_web.rst": {
-      "bytes": 7732,
-      "sha256": "2fae74d911571080163c5dfd4035981c1389cc8f03fb72949c354023d9bf6957"
+      "bytes": 7799,
+      "sha256": "7daef2b1c66f6c38afd3d549c4119b55ae0b0cf53536b0673cc343e4a844b066"
     },
     "source/how_do_i_acknowledge_the_vsc_in_publications.rst": {
       "bytes": 1019,
@@ -2477,12 +2477,12 @@
       "sha256": "23c3c24ff24bb6ced7d2030abf916b640621b8a92163c982297615980f574123"
     },
     "source/leuven/tier2_hardware/kuleuven_storage.rst": {
-      "bytes": 8538,
-      "sha256": "c9f4df017535b0597533508dd7f8d338982c6b96a57bbad807b22d29f49659c9"
+      "bytes": 18968,
+      "sha256": "5ef9f6330626c0877b736f93a7adbaa8531db4284a7ce43d992a8ef34c7b2226"
     },
     "source/leuven/tier2_hardware/kuleuven_storage_quota_table.rst": {
-      "bytes": 1921,
-      "sha256": "f2b42252084581190eb5b2fb4fe5abdc4605fa41aedf1cc39b6cea80fd15d3c3"
+      "bytes": 2394,
+      "sha256": "e952b7e737caec36608c0caf4072034a0ad65ef48aebec9f4dbaeee14d8a7aa7"
     },
     "source/leuven/tier2_hardware/kuluh_pfs.svg": {
       "bytes": 97746,
@@ -2565,5 +2565,5 @@
       "sha256": "7a659282cded2a5a3d2a8fbdcba05427bfdbbcc31329f3c612f88d067a87ae4d"
     }
   },
-  "upstream_committed_at": "2026-11-26T11:07:38Z"
+  "upstream_committed_at": "2026-11-27T10:04:37Z"
 }
